@@ -91,3 +91,8 @@ Dos de los principales y más utilizados gestores de pago, que son de acceso lib
  
 ***Fire Bird***
             *De gran potencia y muy sencillo a la vez, este sistema de gestión de base de datos relacional SQL, es uno de los mejores gestores Open Source (Código abierto) o libres. Es compatible con Windows y Linux. Tiene buen soporte para los procedimientos almacenados, las transacciones compatibles con ACID y con los métodos de acceso múltiple como Nativo, Python, .NET, etc...*
+
+### Diseño de base de datos relacionales
+La metodología de diseño de base de datos relacionales se ha consolidado satisfaciendo las propiedades de generalidad, calidad de producto y facilidad de uso.
+#### Diseño conceptual
+Definir las entidades y relaciones entre ellos de forma abstracta, sin centrarse en ningún modelo lógico en concreto como el relacional, orientado a objetos, jerárquico o de red.
