@@ -5,7 +5,7 @@ no es igual que un Word. src=https://docs.github.com/es/get-started/writing-on-g
 _Tengan en cuenta que una vez que termines de usar el repo para escribir la información, al final de la pagina, guardar el commit del archivo_
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 _Este proyecto funciona como documento de texto para desarrollar los conceptos vistos en el bloque n°1 de la tecnicatura de desarrollo web y aplicaciones digitales._
-### Historia y Evolución de Base de Datos SGBD I, II
+### Introducción a las bases de datos
 El termino base de datos apareció en nuestras vidas en 1963, California, Estados Unidos. Se puede decir con aproximación que una base de datos es un conjunto de información relacionada que se encuentra agrupada o estructurada, o bien, que es un sistema formado por un conjunto de datos almacenados en discos que permiten el acceso directo a ellos y un conjunto de programas que manipulan esos datos.
 Por su parte, un sistema de Gestión de Bases de datos es un tipo de software muy especifico dedicado a servir de interfaz entre la base de datos, el usuario y las aplicaciones que la utilizan; o lo que es lo mismo, una agrupación de programas que sirven para definir, construir y manipular una base de datos, permitiendo así almacenar y posteriormente acceder a los datos de forma rápida y estructurada.
 
@@ -96,3 +96,17 @@ Dos de los principales y más utilizados gestores de pago, que son de acceso lib
 La metodología de diseño de base de datos relacionales se ha consolidado satisfaciendo las propiedades de generalidad, calidad de producto y facilidad de uso.
 #### Diseño conceptual
 Definir las entidades y relaciones entre ellos de forma abstracta, sin centrarse en ningún modelo lógico en concreto como el relacional, orientado a objetos, jerárquico o de red.
+- Herramienta: Modelo conceptual de datos, se usa alguna variante del modelo entidad-relación para las bases de datos relacionales.
+- Resultado: Esquema conceptual de la base de datos.
+#### Diseño lógico
+Su objetivo es definir el esquema de la base de datos según el modelo que implementa el SGBD objetivo.
+- Herramienta: Modelo lógico de datos. Se usa el modelo lógico que implemente el sistema de gestión de bases de datos objetivo, pero es independiente de los aspectos físicos. Usan técnicas formales para verificar la calidad del esquema lógico; la más usual es la normalización. En el modelo relacional usan las tablas.
+- Resultado: Esquema lógico de la base de datos.
+#### Diseño físico
+Su objetivo es definir el esquema físico de la base de datos de forma que se den todas las instrucciones para que un DBA _(Data Base Administrator)_ pueda implementar la base de datos sin ninguna ambigüedad. En esta etapa se considera el rendimiento.
+- Herramienta: Modelo físico de datos. Se consideran todos los detalles de la implementación física: organización de archivos e índices para el SGBD considerado.
+- Resultado: Esquema físico de la base de datos.
+> Especificaciones(en lenguaje natural) ---Diseño conceptual---> Esquema conceptual(Modelo entidad-relación) ---Diseño lógico---> Esquema lógico(Diseño de tablas relacionales) ---Diseño físico---> Esquema físico(Organización de archivos e indices)
+#### Diseño conceptual
+El modelo entidad-relación que permite diseñar el esquema conceptual de una BD, y es muy adecuado para las BDs relaciones. Su resultado es un diagrama entidad-relación.
+**En este apartado se usará de ejemplo de aplicación a las necesidades de una secretaria de un centro docente, en la que hay alumnos matriculados en asignaturas y profesores que las imparten en ciertas aulas. Los alumnos tendrán una nota determinada en cada asignatura en que están matriculados.
