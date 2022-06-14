@@ -110,3 +110,9 @@ Su objetivo es definir el esquema físico de la base de datos de forma que se de
 #### Diseño conceptual
 El modelo entidad-relación que permite diseñar el esquema conceptual de una BD, y es muy adecuado para las BDs relaciones. Su resultado es un diagrama entidad-relación.
 **En este apartado se usará de ejemplo de aplicación a las necesidades de una secretaria de un centro docente, en la que hay alumnos matriculados en asignaturas y profesores que las imparten en ciertas aulas. Los alumnos tendrán una nota determinada en cada asignatura en que están matriculados.**
+#### Conceptos
+- **Entidad:** Es el menor objeto con significado en una instancia. Por ej. para el diseño de una BD de la secretaría de un centro docente, el alumno con los siguientes datos:
+>  DNI = 01234567Z
+>  Nombre y apellidos = Manuel Vázquez Prieto
+>  Teléfono = 91-12345678
+>  Domicilio = Calle del Jazmín 7, 4 Izq.
