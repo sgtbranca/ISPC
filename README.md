@@ -180,8 +180,8 @@ De la especificación del problema de la secretaría se deduce que va ha haber u
 > No pueden. Una solución sería incluirlos con los datos de los alumnos vacíos (nulos), lo cual no sería nada aconsejable. Los valores nulos se deben evitar siempre que sea posible.
 Por tanto, hay que distinguir entre el tipo de entidad Alumnos y el tipo de entidad Asignaturas. Ambas se relacionarán mediante un tipo de relación Matrícula. Los restantes tipos de entidad serán: Profesores y Aulas.
 Los atributos de cada tipo de entidad:
-• Alumnos: DNI, Apellidos y Nombre, Domicilio, Teléfono y COU
-• Asignaturas: Código, Título, Créditos
-• Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
-• Aulas: Edificio y Número
+- Alumnos: DNI, Apellidos y Nombre, Domicilio, Teléfono y COU
+- Asignaturas: Código, Título, Créditos
+- Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
+- Aulas: Edificio y Número
 Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
