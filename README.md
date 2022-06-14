@@ -116,3 +116,15 @@ El modelo entidad-relación que permite diseñar el esquema conceptual de una BD
 >  Nombre y apellidos = Manuel Vázquez Prieto
 >  Teléfono = 91-12345678
 >  Domicilio = Calle del Jazmín 7, 4 Izq.
+Constituye una entidad. Igual sucede con cada asignatura concreta, cada profesor, etc.
+En el caso del enfoque "clásico" correspondería a cada registro guardado en un fichero.
+
+- **Atributo:** Es cada uno de los componentes que determinan una entidad.
+Cada atributo tiene asociado un dominio: el conjunto de valores que puede tomar.
+La entidad del ejemplo anterior viene determinada por los valores de sus atributos DNI, Nombre y Apellidos, Teléfono, Domicilio y COU.
+En el enfoque clásico serían los campos de los registros.
+- **Atributos monovalorados y multivalorados:** Los atributos multivalorados son los que pueden contener más de un valor simultáneamente, y monovalorados a los que sólo pueden contener un valor.
+- **Atributos simples y compuestos:** Un atributo es compuesto cuando puede descomponerse en otros componentes o atributos más pequeños, y simple en otro caso.
+- **Clave:** Es un atributo o conjunto de atributos cuyos valores identifican unívocamente cada entidad.
+#### El concepto de clave distingue tres claves diferentes:
+- **Superclave:** Es cualquier conjunto de atributos que pueden identificar unívocamente una tupla
