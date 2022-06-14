@@ -121,10 +121,67 @@ En el caso del enfoque "clásico" correspondería a cada registro guardado en un
 
 - **Atributo:** Es cada uno de los componentes que determinan una entidad.
 Cada atributo tiene asociado un dominio: el conjunto de valores que puede tomar.
-La entidad del ejemplo anterior viene determinada por los valores de sus atributos DNI, Nombre y Apellidos, Teléfono, Domicilio y COU.
+<!-- La entidad del ejemplo anterior viene determinada por los valores de sus atributos DNI, Nombre y Apellidos, Teléfono, Domicilio y COU. -->
 En el enfoque clásico serían los campos de los registros.
 - **Atributos monovalorados y multivalorados:** Los atributos multivalorados son los que pueden contener más de un valor simultáneamente, y monovalorados a los que sólo pueden contener un valor.
+<!--Por ejemplo, una persona puede tener varios números de teléfono (casa, trabajo, móvil) y puede que nos interese tenerlos todos. En este caso haremos de teléfono un atributo multivalorado. -->
 - **Atributos simples y compuestos:** Un atributo es compuesto cuando puede descomponerse en otros componentes o atributos más pequeños, y simple en otro caso.
+<!-- Por ejemplo, en el caso del domicilio puede que nos interese descomponerlo a su vez en calle, el número y la ciudad por separado. -->
 - **Clave:** Es un atributo o conjunto de atributos cuyos valores identifican unívocamente cada entidad.
+<!-- Por ejemplo, DNI es un atributo clave del tipo de entidad Alumnos. Esto significa que los valores de la clave no se pueden repetir en el conjunto de entidades. En el ejemplo anterior ningún DNI se debería repetir en una instancia del tipo de entidad Alumnos. -->
 #### El concepto de clave distingue tres claves diferentes:
-- **Superclave:** Es cualquier conjunto de atributos que pueden identificar unívocamente una tupla
+- **Superclave:** Es cualquier conjunto de atributos que pueden identificar unívocamente a una tupla.
+- **Clave candidata:** Es el menor conjunto de atributos que puede formar clave. Puede haber varias en una tabla.
+- **Clave primaria:** Es la clave candidata que distingue el usuario para identificar unívocamente cada tupla. Es importante en cuanto alaspecto del rendimiento, como se verá en el apartado dedicado al diseño físico.
+- **Tipo de entidad:** Es el conjunto de entidades que comparten los mismos atributos (aunque con diferentes valores para ellos).
+<!-- Por ejemplo, Alumnos será un tipo de entidad que representa cualquier conjunto de entidades en el que todas tengan como atributos
+DNI, Nombre y Apellidos, ... y valores dentro de los dominios correspondientes. Asignaturas será otro tipo de entidad, etc. -->
+- **Intuición:** En el enfoque "clásico" sería el tipo de los registros. Estamos describiendo el esquema de la base de datos.
+- **Relación:** Es una correspondencia entre dos o más entidades. Se habla de relaciones binarias cuando la correspondencia es entre dos entidades, ternarias cuando es entre tres, y así sucesivamente.
+<!-- Por ejemplo, la relación (José García, Bases de datos) es una relación entre dos entidades que indica que el alumno José García está
+matriculado en la asignatura Bases de datos. -->
+- **Tipos de relación:** Representan a todas las posibles relaciones entre entidades del mismo tipo.
+<!-- Por ejemplo, el tipo de relación matrícula relaciona el tipo de entidad alumnos con el tipo de entidad asignaturas. -->
+**Observaciones:**
+- Las relaciones también pueden tener atributos. 
+<!-- Por ejemplo, Matrícula puede tener el atributo Nota que indica la nota que el alumno ha obtenido en una asignatura determinada. -->
+> Es posible que el mismo tipo de entidad aparezca dos o más veces en un tipo de relación. En este caso se asigna un nombre a cada papel que hace el tipo de entidad en el tipo de relación. 
+<!-- Por ejemplo, algunos profesores tienen un supervisor, por lo que se define un tipo de relación Supervisa que relaciona profesores con profesores, el primero tendrá el papel de supervisor y el segundo de supervisado. -->
+### Diagramas entidad-relación (E-R)
+El diseño del modelo E-R a partir del análisis inicial no es directo. A un mismo análisis le corresponden muchos diseños "candidatos". Hay varios criterios, pero ninguno es definitivo. De un buen diseño depende:
+- Eficiencia: Es muy importante en las BD cuando se manejan grandes cantidades de datos.
+
+- Simplicidad del código: Se cometen menos errores.
+- Flexibilidad: Se refiere a que el diagrama sea fácil de modificar.
+Los componentes básicos de los diagramas E-R son los atributos, los tipos de entidades y los tipos de relaciones.
+### Elección de los tipos de entidad y sus atributos
+De la especificación del problema de la secretaría se deduce que va ha haber un tipo de entidad alumnos, pero no cuáles son sus atributos. ¿Debe incluir las asignaturas en las que está matriculado? La respuesta es no y hacerlo así sería un error grave. Aparte de la idea 'filosófica’ (cada asignatura es un objeto con significado propio, es decir, una entidad), al mezclar en una sola entidad alumnos y asignaturas cometemos cuatro errores:
+1. Un alumno no tiene una asignatura asociada sino un conjunto de asignaturas asociadas. En cambio, sí tiene un DNI asociado, una dirección asociada, etc. Por tanto las entidades serán de la forma:
+> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
+> Cod = MD, Título = Matemática Discreta, Créditos=9},
+> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
+> Cod = IS, Título = Ingeniería del Software, Créditos = X}
+> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
+> Cod=LPI, Título = Laboratorio de programación I, Créditos = X}
+
+> Hay redundancia en la información de alumnos: se repite en cada entidad.
+2. Las asignaturas son siempre las mismas, con lo que por cada alumno que se matricula en la misma asignatura hay que repetir toda la información:
+> { DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567, … ,
+> Asignaturas = { {Cod = MD, Título = …}, {COD = IS , Título = …},
+> {Cod = LPI , Título = …} } }
+> { DNI = 0000001, Nomb.Ape = Eva Manzano, Telf. = 01234567, … ,
+> Asignaturas = { {Cod = MD, Título = …}, {COD = IS , Título = …},
+> {Cod = BDSI , Título = …} } }
+
+> En este caso hay redundancia en la información de las asignaturas.
+3. Por cada profesor hay que apuntar las asignaturas que imparte. La información de las asignaturas debe estar por tanto relacionada con la de los profesores, pero ya está incluida con los alumnos. Hay que repetir la información de las asignaturas por lo que se consigue más redundancia.
+
+4. No se pueden guardar los datos de una asignatura hasta que no se matricule un alumno en ella. Puede ser que en secretaría quieran meter los datos de las asignaturas antes de empezar el proceso de matrícula:
+> No pueden. Una solución sería incluirlos con los datos de los alumnos vacíos (nulos), lo cual no sería nada aconsejable. Los valores nulos se deben evitar siempre que sea posible.
+Por tanto, hay que distinguir entre el tipo de entidad Alumnos y el tipo de entidad Asignaturas. Ambas se relacionarán mediante un tipo de relación Matrícula. Los restantes tipos de entidad serán: Profesores y Aulas.
+Los atributos de cada tipo de entidad:
+• Alumnos: DNI, Apellidos y Nombre, Domicilio, Teléfono y COU
+• Asignaturas: Código, Título, Créditos
+• Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
+• Aulas: Edificio y Número
+Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
