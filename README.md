@@ -185,3 +185,389 @@ Los atributos de cada tipo de entidad:
 - Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
 - Aulas: Edificio y Número
 Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
+
+# Introducción a las Bases de Datos
+## La necesidad de gestionar datos 
+
+ 
+Si bien siempre ha existido la necesidad de gestionar datos por más antiguo que fuera el método, la llegada del ordenador significo un gran avance en la historia de las BDD o SGBBD y con esto su cada vez más demanda de datos, y eso ha incrementado todavía más con la expansión que internet ha tenido en estos años. 
+En informática se conoce como dato a cualquier elemento informativo que tenga relevancia para el sistema. 
+La información se considera unos de los pilares de las computadoras digitales, tan así que las BDD son de las aplicaciones más antiguas dentro de la informática. 
+En un principio los datos que se precisaba almacenar y gestionar eran pocos, pero esto ha ido creciendo hasta tal punto de que hoy en día existen varias aplicaciones de internet que han tenido que crear grandes sistemas de información llegando a requerir varias máquinas y así poder brindar información a cualquier lugar del planeta y de manera veloz. 
+Nada de esto sería posible de no ser porque la ciencia de las BDD se mantiene en constante renovación. 
+
+ 
+
+## Ficheros 
+
+Los ficheros o archivos son la herramienta fundamental de trabajo en una computadora, inclusive hoy en día se sigue almacenando la información en ficheros, aunque de una estructura cada vez más compleja. 
+
+Estos se almacenan en componentes de almacenamiento como por ejemplo el disco duro. 
+
+ 
+
+Se pueden realizar las siguientes operaciones sobre los ficheros: 
+
+- **Abrir (open)** Prepara el fichero para su proceso.  
+
+- **Cerrar (close)** Cierra el fichero impidiendo su proceso inmediato.  
+
+- **Leer (read)** Obtiene información del fichero.  
+
+- **Escribir (write)** Graba información en el fichero.  
+
+- **Posicionarse (seek)** Coloca el puntero de lectura en una posición concreta del mismo (no se puede realizar en todos los tipos de ficheros).   
+
+- **Fin de fichero (eof)** Indica si hemos llegado al final del fichero. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+## Tipos de ficheros 
+
+### Ficheros secuenciales 
+
+Son aquellos en los que los datos se ordenan en el orden que fueron grabados, es decir que para leer los últimos datos es necesario pasar por los anteriores primero 
+
+**Ventajas**  
+
+- Rápidos para obtener registros contiguos de una base de datos  
+
+- No hay huecos en el archivo al grabarse los datos seguidos, datos más compactos. 
+
+ 
+
+**Desventajas** 
+
+- Consultas muy lentas al tener que leer todos los datos anteriores al dato que queremos leer  
+
+- Algoritmos de lectura y escritura más complejos  
+
+- No se pueden eliminar registros del fichero (se pueden marcar de manera especial para que no sean tenidos en cuenta, pero no se pueden borrar)  
+
+- El borrado provoca archivos que no son compactos  
+
+- La ordenación de los datos requiere volver a crearle de nuevo 
+
+ 
+
+## Ficheros de acceso directo o aleatorio: 
+
+Es posible leer una posición concreta del fichero si sabemos la posición del dato y el tamaño 
+
+Para almacenar registros lo único que necesitamos es saber el tamaño del mismo.  
+
+ 
+
+**Ventajas**  
+
+- Acceso rápido al no tener que leer los datos anteriores  
+
+- La modificación de datos es más sencilla  
+
+- Permiten acceso secuencial  
+
+- Permiten leer y escribir a la vez  
+
+- Aptos para organizaciones relativas directas, en las que la clave del registro se relaciona con su posición en el archivo  
+
+**Desventajas**  
+
+- Salvo en archivos relativos directos, no es apto por sí mismo para usar en bases de datos, ya que los datos se organizan en base a una clave  
+
+- No se pueden borrar datos (sí marcar para borrado, pero generarán huecos)  
+
+- Las consultas sobre multitud de registros son más lentas que en el caso anterior. 
+
+ 
+## Ficheros secuenciales encadenados: 
+
+Son ficheros secuenciales gestionados mediante punteros, se crean datos especiales para asignar la dirección de cada registro del fichero. 
+
+ 
+
+**Ventajas**  
+
+- El fichero mantiene el orden en el que se añadieron los registros y un segundo orden en base a una clave  
+
+- La ordenación no requiere reorganizar todo el fichero, sino sólo modificar los punteros  Las mismas ventajas que el acceso secuencial  
+
+- En este caso sí se borran los registros y al reorganizar, se perderán definitivamente  
+
+**Desventajas** 
+
+- No se borran los registros, sino que se marcan para ser ignorados. Por lo que se malgasta espacio  
+
+- Añadir registros o modificar las claves son operaciones que requieren recalcular los punteros 
+
+ 
+
+ 
+
+### Ficheros secuenciales indexados: 
+
+Se utilizan 3 ficheros: 
+
+- Principal: Posee los registros almacenados de forma secuencial, pero que permite su acceso aleatorio. 
+- Índice: Posee punteros a la posición ordenada de los registros 
+- Desbordamiento: se colocan los nuevos registros que se van añadiendo (para no tener que ordenar el archivo principal cada vez que se añade un nuevo registro) 
+Para no tener demasiados archivos en desbordamiento (lo que restaría velocidad), cada cierto tiempo se reorganiza el archivo principal. 
+
+ 
+
+**Ventajas**  
+
+- El archivo está siempre ordenado en base a una clave  
+
+- La búsqueda de datos es rapidísima  
+
+- Permite la lectura secuencial (que además será en el orden de la clave)  
+
+- El borrado de registros es posible (aunque más problemático que en el caso anterior) 
+
+**Desventajas**  
+
+- Para un uso óptimo hay que reorganizar el archivo principal y esta operación es muy costosa ya que hay que reescribir de nuevo y de forma ordenada todo el archivo.  
+
+- La adición de registros requiere más tiempo que en los casos anteriores al tener que reordenar los índices. 
+
+ 
+
+### Ficheros indexado – encadenados: 
+
+ 
+
+Se usan punteros e índices, como en el caso anterior se utilizan 3 ficheros. Sin embargo, el archivo principal no se reorganiza y se añade el valor del puntero. Así mismo en el archivo índice se coloca el orden de los punteros. Los nuevos registros se almacenan en el archivo de desbordamiento. 
+
+ 
+
+**Ventajas**  
+
+- Posee las mismas ventajas que los archivos secuenciales indexados, además de una mayor rapidez al reorganizar el fichero (sólo se modifican los punteros)  
+
+**Desventajas** 
+
+- Requieren compactar los datos a menudo para reorganizar índices y quitar el fichero de desbordamiento. 
+ 
+- Borrado y recuperación de registros 
+
+ 
+
+Algunos tipos de ficheros no permiten borrar datos, en cambio permiten agregar datos que indican si el registro esta borrado o no. 
+
+En otros casos los datos antes de ser eliminados definitivamente pasan a un fichero especial donde permanecen un determinado tiempo y permite la posibilidad de recuperación. 
+
+ 
+
+## Fragmentación y compactación de datos 
+
+La fragmentación en un archivo es cuando este tiene espacios vacíos dentro del mismo debido al borrado de datos u a otras causar. Esto puede causar que el archivo sea mas pesado y provoque que la lectura y escritura del fichero sea mas lenta. 
+
+Se pueden compactar los datos para eliminar estos espacios vacíos dentro del archivo 
+
+De las siguientes maneras: 
+
+- Reescribir el archivo para eliminar los huecos. Es la mejor, pero lógicamente es la más lenta al requerir releer y reorganizar todo el contenido del fichero. 
+
+- Aprovechar huecos. De forma que los nuevos registros se inserten en esos huecos. Esta técnica suele requerir un paso previo para reorganizar esos huecos. 
+
+
+# Sistemas gestores de base de datos
+
+### Sistemas de Información orientados a procesos
+
+Antes de la década del setenta, la información se trataba y se gestionaba utilizando los típicos sistemas de gestión de archivos que iban soportados sobre un sistema operativo (consistían en un conjunto de programas que definían y trabajaban sus propios datos). Los datos se almacenan en archivos y los programas utilizan estos archivos para manipular la información. Si la estructura de los archivos cambia, todos los programas que los utilicen se deben modificar.
+- La definición de los datos se encuentra codificada dentro de los programas
+- El control del acceso y la manipulación de los datos vienen impuesto por los programas de aplicación
+Se crean diversas aplicaciones (software) que gestionan diferentes aspectos del sistema: Aplicación realiza operación :point_right: Los datos se almacenan en archivos digitales (binarios, hojas de cálculo, archivos de texto).
+Cada programa almacena sus datos de forma “caótica” y su única ventaja era que los procesos eran independientes (la modificación de uno no afectaba al resto).
+En base a eso, se empezó a estructurar los datos y organizar los datos de forma que se pueda acceder a ellos independientemente del programa que lo gestionara (así no tenían que modificarse los programas con los que trabajaban).
+
+#### Inconvenientes de un sistema de gestión de archivos
+
+**Redundancia e inconsistencia de los datos** :los archivos son creados por distintos programas y van cambiando a lo largo del tiempo (pueden tener distintos formatos y los datos pueden estar duplicados en varios sitios)
+
+**Dependencia de los datos física-lógica** :La estructura física de los datos se encuentra codificada en los programas de aplicación.
+
+**Dificultad para tener acceso a los datos** cada vez que se necesite una consulta que no fue prevista en el inicio implica la necesidad de codificar el programa de aplicación necesario
+
+**Separación y aislamiento de los datos** :Es difícil escribir nuevos programas que aseguren la manipulación de los datos correctos ya que se encuentran repartidos en varios archivos.
+
+**Dificultad para el acceso concurrente** : Es complicado que los usuarios actualicen los datos simultáneamente.
+**Dependencia de la estructura del archivo con el lenguaje de programación **: La estructura se define dentro de los programas (los formatos de los archivos son incompatibles).
+
+**Problemas en la seguridad de los datos**: Es difícil implantar restricciones de seguridad pues las aplicaciones se van añadiendo al sistema según se van necesitando (cada aplicación se crea independientemente, es muy difícil establecer criterios de seguridad uniformes)
+
+**Problemas de integridad de datos (datos inconsistentes)**: Los valores almacenados en los archivos deben cumplir con restricciones de consistencia, un proceso cambia sus datos y no el resto, el mismo dato puede tener valores distintos según qué aplicación acceda a él.
+
+### Sistemas de Información orientados a los datos. Bases de Datos
+
+El objetivo primordial de un gestor es proporcionar eficiencia y seguridad a la hora de extraer o almacenar información en las BD.
+
+Los sistemas gestores de BBDD están diseñados para gestionar grandes bloques de información, que implica tanto la definición de estructuras para el almacenamiento como de mecanismos para la gestión de la información. 
+- Los datos se centralizan en una base de datos única para todas las aplicaciones.
+- Los datos se almacenan en una única estructura lógica que es utilizable por las aplicaciones.
+- Se accede a los datos comunes por medio de la estructura.
+- Cuando una app modifica un dato el cambio es visible para el resto de apps.
+
+**Una BD es un gran almacén de datos que se define una única vez:**
+
+- Se puede acceder a los datos de forma simultanea por varios usuarios.
+- Se encuentran relacionados y existe un mínimo de duplicidad.
+- Se almacenan las descripciones de los datos (metadatos).
+
+#### Ventajas
+
+**Independencia de los datos y los programas y procesos** : permite modificar los datos sin modificar el código de las aplicaciones
+
+**Menor redundancia** : Sólo se indica la forma en la que se relacionan los datos.
+
+Integridad de los datos:** Mayor dificultad de perder los datos o de realizar incoherencias con ellos.
+
+**Mayor seguridad en los datos**  :Se limita el acceso a los usuarios, cada usuario solo puede acceder a la información que se le asigne.
+
+**Datos más documentados:** :Los metadatos describen la información de la BDD.
+
+**Acceso a los datos más eficiente** :La organización de los datos produce un resultado más óptimo en rendimiento.
+
+**Menor espacio de almacenamiento** :Gracias a una mejor estructuración de los datos.
+
+**Acceso simultáneo a los datos**: Es más fácil controlar el acceso de usuarios de forma concurrente.
+
+#### Desventajas
+
+**Instalación costosa** :el control y administración de una base de datos requiere un software y un hardware poderoso.
+
+**Personal cualificado** :debido a la dificultad de manejo de este tipo de sistemas.
+
+**Implementación larga y difícil** :Debido a los puntos anteriores.
+
+**Ausencia de estándares reales** :Excesiva dependencia hacia los sistemas comerciales del mercado.
+
+### Arquitectura de los sistemas gestores de base de datos
+
+Un sistema gestor de base de datos (SGBD o DDMS: Data Base Management System) es un software que permite a los usuarios procesar, describir, administrar y recuperar datos almacenados en una bdd.
+
+En este tipo de sistema se proporciona un conjunto coordinado de programas, procedimientos y lenguajes que permiten a los distintos usuarios realizar tareas habituales con los datos, además de garantizar la seguridad de los mismos.
+
+Mantiene la seguridad e integridad de los datos.
+
+#### Las herramientas que más destacan son:
+
+**Herramientas para la creación y especificación de los datos:** Especificación de la estructura, el tipo de los datos, las restricciones y relaciones entre ellos mediante lenguajes de definición de datos. 
+
+**Herramientas para administrar y crear la estructura física:** requerida en las unidades de almacenamiento. 
+
+**Herramientas para la manipulación de los datos**: de las bases de datos, para añadir, modificar, suprimir o consultar datos. 
+
+**Herramientas de recuperación:** en caso de desastre. 
+
+**Herramientas para la creación de copias de seguridad:** para restablecer la información en caso de fallos en el sistema.
+
+**Herramientas para la gestión de la comunicación:** de la base de datos. 
+
+**Herramientas para la creación de aplicaciones:** que utilicen esquemas externos de los datos. 
+
+**Herramientas de instalación**
+
+**Herramientas para la exportación e importación de datos**
+
+### Niveles de abstracción de una base de datos
+
+Existen dos niveles dentro de una base de datos:
+
+**Nivel externo o de visión:** Visión de los datos que poseen los usuarios del Sistema de Información. Visualización final para los usuarios a través de las aplicaciones diseñadas por los desarrolladores 
+
+**Nivel físico:** Forma en la que realmente están almacenados los datos en el disco, oculta a los usuarios, pero no para los administradores que lo necesitan para gestionar más eficientemente la base de datos. 
+
+Dentro del sistema gestor de base de datos existen tres niveles:
+
+**Nivel interno o físico:** Describe la estructura física de la BD mediante un esquema interno. Este esquema se especifica con un modelo físico y describe los detalles de cómo se almacenan físicamente los datos: los archivos que contienen la información, su organización, los métodos de acceso a los registros, los tipos de registros, etc.
+Suelen ser los discos.
+Sólo es utilizada por el administrador que gestiona la base de datos.
+
+**Nivel conceptual:** Describe las entidades, atributos, relaciones, operaciones de los usuarios y restricciones, ocultando los detalles de las estructuras físicas de almacenamiento. Se trata de un esquema teórico de los datos en el que figuran organizados en estructuras reconocibles del mundo real y en el que también aparece la forma de relacionarse los datos.
+Son las tablas.
+
+**Nivel externo o de visión:** Es donde se describen varios esquemas externos o vistas de usuarios. Cada esquema describe la parte de la BD que interesa a un grupo de usuarios en este nivel se representa la visión individual de un usuario o de un grupo de usuarios.
+
+Se trata de la visión de los datos que poseen los usuarios finales que obtienen a través de las aplicaciones.
+Son las vistas
+
+Los esquemas externos los realizan las programadoras/es según las indicaciones formales de los analistas.
+
+Disco duro :point_right: Tablas :point_right: Vistas :point_right: Usuario
+
+## Componentes de los sistemas gestores de base de datos
+
+Los SGBD ofrecen lenguajes e interfaces apropiadas para cada tipo de usuario.
+
+Los lenguajes permiten al administrador de la BD especificar los datos que la componen, su estructura, relaciones entre datos, reglas de integridad, controles de acceso, características de tipo físico y vistas externas.
+
+### Lenguajes de los Sistemas Gestores de Base de Datos
+
+#### Los lenguajes de SGBD se clasifican en:
+
+**Lenguajes de definición de datos (LDD o DDL):** Especifican el esquema de la base de datos, las vistas de los usuarios y las estructuras de almacenamiento. Define el esquema conceptual y el esquema interno.
+
+Lo utilizan diseñadores y administradores de la base de datos para crear estructuras apropiadas de integración de datos. Es la que permite definir las tres estructuras de abstracción. 
+Trabaja con metadatos.
+
+La función de definición sirve para crear, eliminar o modificar metadatos, para esto permite usar un lenguaje de descripción de datos o DDL
+
+Mediante ese lenguaje se definen las estructuras de datos, las relaciones entre datos y reglas que deben cumplir los datos.
+
+**Lenguaje de manipulación de datos (LMD o DML):** Lee y actualiza datos de la base de datos, lo utilizan los usuarios para realizar consultas, inserciones, supresión o modificación. 
+
+Este tipo de lenguajes acceden a un registro y lo procesan.
+
+Existen LMD procedurales donde el usuario será un programador y especificará las operaciones de acceso, las sentencias están embebidas en un lenguaje de alto nivel llamado anfitrión.
+
+Las bases de datos jerárquicas y en red utilizan LMD procedurales.
+
+Mediante este lenguaje se puede: añadir, eliminar, modificar o buscar datos.
+
+Actualmente se distingue la función de buscar datos (consulta) y para eso se proporcional un DQL o también conocido como: lenguaje de consulta de datos.
+
+**Lenguaje de control de datos (LCD o DCL):** Los administradores poseen mecanismos para proteger datos (se permite a cada usuario ver ciertos datos y otros no o permitir el uso de recursos concretos de la base de datos y prohibir otros).
+En simples palabras, permite controlar la seguridad de la base de datos.
+
+### Recursos de la base de datos
+
+Existen diferentes tipos de usuarios (administradores, desarrolladores, diseñadores y usuarios finales) pero se puede desglosar aún más la clasificación de éstos: 
+
+**Administrador de la Base de Datos (DBA):** posee el máximo nivel de privilegios, encargado de crear los usuarios que se conectarán a la BD, hay que procurar que haya el menor número de administradores, a ser posible una sola persona.
+Sus tareas son:
+
+Instalar SGBD en el sistema informático: crear BDD que se vayan a gestionar; crear y mantener el esquema de la bdd; crear y mantener las cuentas de usuario de la bdd, arrancar y parar SGBD y cargar las bdd con las que se ha de trabajar; colaborar con el administrador del SO (sistema operativo) en las tareas de ubicación, dimensionado y control de los archivos y espacios de disco ocupados por el SGBD; colaborar en tareas de formación de usuario, establecer estándares de uso/políticas de acceso/protocolos de trabajo diario para los usuarios de la bdd; suministrar la información necesaria sobre la bdd a los equipos de análisis y programación de aplicaciones.
+
+Tareas de explotación: vigilar trabajo diario colaborando en la información y resolución de las dudas de los usuarios de la bdd; controlar en tiempo real los accesos, tasas de uso, cargas en servidores, anomalías; de ser necesario reorganizar la bdd; efectuar copias de seguridad periódicas; restaurar la bdd en caso de un incidente material a partir de las copias de seguridad; estudiar las auditorías del sistema para detectar anomalías, intentos de violación de registros; ajustar y optimizar la bdd mediante el ajuste de sus parámetros y con ayuda de las herramientas de monitorización y de las estadísticas del sistema.
+
+**Informáticos:**
+
+
+Son profesionales que definen y preparan la base de datos, pueden ser:
+
+**Directivos:** organizadores y coordinadores del proyecto a desarrollar y máximos responsables del mismo (deciden que recursos utilizar, planifican el tiempo y las tareas) 
+
+**Analistas**: controlan el desarrollo de la base de datos aprobada por dirección (son diseñadores de la base de datos)
+**Administradores de la base de datos:** crean esquema interno de la bdd, planificación de copia de seguridad, gestión de usuarios, permisos, crean objetos de la base de datos.
+
+**Desarrolladores:** Realizan las aplicaciones de usuarios de la base de datos.
+
+Equipo de mantenimiento: Dan soporte a los usuarios en el trabajo diario.
+
+**Usuarios:**
+
+
+**Expertos:** Utilizan lenguaje de manipulación de datos (DML) para acceder a la base de datos. Son usuarios que utilizan la base de datos para gestión avanzada de decisiones.
+
+**Habituales:** Utilizan las aplicaciones creadas por los devs para consultar y actualizar los datos.
+
+**Ocasionales:** Utilizan un acceso mínimo a la bdd a través de una aplicación que permite consultar ciertos datos.
+
