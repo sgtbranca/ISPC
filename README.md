@@ -500,9 +500,10 @@ Su objetivo es definir el esquema físico de la base de datos de forma que se de
 
 **Diseño conceptual**
 El modelo entidad-relación que permite diseñar el esquema conceptual de una BD, y es muy adecuado para las BDs relaciones. Su resultado es un diagrama entidad-relación.
+
 **En este apartado se usará de ejemplo de aplicación a las necesidades de una secretaria de un centro docente, en la que hay alumnos matriculados en asignaturas y profesores que las imparten en ciertas aulas. Los alumnos tendrán una nota determinada en cada asignatura en que están matriculados.**
 
-#### Conceptos
+### Conceptos
 - **Entidad:** Es el menor objeto con significado en una instancia. Por ej. para el diseño de una BD de la secretaría de un centro docente, el alumno con los siguientes datos:
 >  DNI = 01234567Z
 >  Nombre y apellidos = Manuel Vázquez Prieto
@@ -550,7 +551,7 @@ El diseño del modelo E-R a partir del análisis inicial no es directo. A un mis
 
 ![Tipos de entidades y atributos](https://github.com/sgtbranca/ISPC/blob/main/tipos%20de%20entidades%20y%20atributos.png)
 
-### Elección de los tipos de entidad y sus atributos
+#### Elección de los tipos de entidad y sus atributos
 De la especificación del problema de la secretaría se deduce que va ha haber un tipo de entidad alumnos, pero no cuáles son sus atributos. ¿Debe incluir las asignaturas en las que está matriculado? La respuesta es no y hacerlo así sería un error grave. Aparte de la idea 'filosófica’ (cada asignatura es un objeto con significado propio, es decir, una entidad), al mezclar en una sola entidad alumnos y asignaturas cometemos cuatro errores:
 1. Un alumno no tiene una asignatura asociada sino un conjunto de asignaturas asociadas. En cambio, sí tiene un DNI asociado, una dirección asociada, etc. Por tanto las entidades serán de la forma:
 > {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
@@ -582,7 +583,7 @@ Los atributos de cada tipo de entidad:
 - Aulas: Edificio y Número
 Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
 
-### Elección de los tipos de relación
+#### Elección de los tipos de relación
 El primer tipo de relación es Matrícula que relaciona cada alumno con las asignaturas en las que está matriculado. Además, está relación tiene un atributo, nota, que se asocia cada tupla de la relación. El segundo tipo de relación es Supervisa que va de Profesores a Profesores y que incluye los papeles Supervisor y Supervisado. La última es Imparte, que relaciona cada profesor con la asignatura que imparte y el aula en la que da esa asignatura. Aquí también surgen varias posibilidades:
 1. Hacer dos relaciones binarias. Por ejemplo, profesor con asignatura y asignatura con aula.
 2. Hacer una relación ternaria entre profesores, aulas y asignaturas.
@@ -608,7 +609,7 @@ El problema del punto 3 sigue siendo el mismo:
 El diagrama entidad-relación del ejemplo quedaría como se ilustra a continuación:
 ![Diagrama-entidad-relacion]()
 
-### Adelanto de las restricciones de integridad
+#### Adelanto de las restricciones de integridad
 
 Con los elementos anteriores tenemos una primera aproximación a los diagramas E-R en la que tenemos definidos los elementos principales de los diagramas. Sin embargo, en el modelo E-R también se pueden definir numerosas restricciones de integridad sobre los tipos de entidades y tipos de relaciones.
 
@@ -629,7 +630,7 @@ El último tipo de restricción de integridad que interesa introducir ahora es l
 
 [alumnos-matricula-asignaturas]()
 
-### Diseño lógico
+#### Diseño lógico
 
    El diseño lógico es la segunda etapa del diseño de bases de datos en general y de las bases de datos relacionales en particular. En nuestro caso, las BD relacionales, el resultado de esta etapa es un esquema relacional basado en un modelo relacional. En este apartado se describirá en primer lugar el modelo relacional y en segundo lugar cómo pasar de un esquema entidad-relación a un esquema relacional.
 
