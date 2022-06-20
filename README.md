@@ -481,6 +481,7 @@ Equipo de mantenimiento: Dan soporte a los usuarios en el trabajo diario.
 ## Diseño de base de datos relacionales
 La metodología de diseño de base de datos relacionales se ha consolidado satisfaciendo las propiedades de generalidad, calidad de producto y facilidad de uso.
 Consta de las siguientes partes:
+
 **Diseño conceptual**
 Definir las entidades y relaciones entre ellos de forma abstracta, sin centrarse en ningún modelo lógico en concreto como el relacional, orientado a objetos, jerárquico o de red.
 - Herramienta: Modelo conceptual de datos, se usa alguna variante del modelo entidad-relación para las bases de datos relacionales.
