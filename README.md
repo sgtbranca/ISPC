@@ -154,6 +154,11 @@ El diseño del modelo E-R a partir del análisis inicial no es directo. A un mis
 - Simplicidad del código: Se cometen menos errores.
 - Flexibilidad: Se refiere a que el diagrama sea fácil de modificar.
 Los componentes básicos de los diagramas E-R son los atributos, los tipos de entidades y los tipos de relaciones.
+
+![Tipos de entidades y atributos](https://acceso.ispc.edu.ar/pluginfile.php/51710/mod_book/chapter/1728/image%20%281%29.png)
+
+
+
 ### Elección de los tipos de entidad y sus atributos
 De la especificación del problema de la secretaría se deduce que va ha haber un tipo de entidad alumnos, pero no cuáles son sus atributos. ¿Debe incluir las asignaturas en las que está matriculado? La respuesta es no y hacerlo así sería un error grave. Aparte de la idea 'filosófica’ (cada asignatura es un objeto con significado propio, es decir, una entidad), al mezclar en una sola entidad alumnos y asignaturas cometemos cuatro errores:
 1. Un alumno no tiene una asignatura asociada sino un conjunto de asignaturas asociadas. En cambio, sí tiene un DNI asociado, una dirección asociada, etc. Por tanto las entidades serán de la forma:
