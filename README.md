@@ -79,121 +79,21 @@ Una base de datos es un sistema compuesto por un conjunto de datos, los cuales e
 El principal lenguaje de base de datos y el más utilizado desde que se conoce la programación de gestión, es el Structured Query Language (SQL). Este, de consulta estructurada, facilita el acceso a la gestión de las bases de datos relaciones, lo que permite realizar tareas en ellas y realizar consultas, que sirvan para obtener, agregar, eliminar o modificar información.
 Para el desarrollo de este lenguaje hay que utilizar un gestor de base de datos, de los que hay muchos, unos de acceso libre y otros de pago. Veamos cuáles son, primeramente, los gestores de base de datos de pago:
 ***Oracle***
-             *Es de los más confiables sistemas de gestión de base de datos relacional, además del más usado. Es propiedad de Oracle Corporation y fue desarrollado en 1977. Se accede directamente a los objetos, a través del lenguaje de consulta SQL, es muy utilizado en las empresas, con un componente de red que permite la comunicación a través de las redes. Su versatilidad le facilita ejecutarse en casi todas las plataformas existentes, Windows, Unix, Linux, MAC OS, entre otros.*
+*Es de los más confiables sistemas de gestión de base de datos relacional, además del más usado. Es propiedad de Oracle Corporation y fue desarrollado en 1977. Se accede directamente a los objetos, a través del lenguaje de consulta SQL, es muy utilizado en las empresas, con un componente de red que permite la comunicación a través de las redes. Su versatilidad le facilita ejecutarse en casi todas las plataformas existentes, Windows, Unix, Linux, MAC OS, entre otros.*
  ***SQL Server***
-             *En competencia directa a Oracle, está SQL Server de Microsoft. Los dos ocupan gran parte del mercado en el sector y son muy parecidos en algunas de sus características y funciones, aunque tienen sus marcadas diferencias. SQL Server se ejecuta en Transact-SQL, esto es un grupo de programas que pueden añadir características al programa, como tratamiento de errores y excepciones, extracción de datos de la web en forma directa, procesamiento de datos, uso de distintos lenguajes de programación y otros más, que lo hacen un gestor muy completo y competitivo. Su carácter administrativo es otro valor agregado, tanto en sus funciones y seguridad, como en su flexibilidad.*
+*En competencia directa a Oracle, está SQL Server de Microsoft. Los dos ocupan gran parte del mercado en el sector y son muy parecidos en algunas de sus características y funciones, aunque tienen sus marcadas diferencias. SQL Server se ejecuta en Transact-SQL, esto es un grupo de programas que pueden añadir características al programa, como tratamiento de errores y excepciones, extracción de datos de la web en forma directa, procesamiento de datos, uso de distintos lenguajes de programación y otros más, que lo hacen un gestor muy completo y competitivo. Su carácter administrativo es otro valor agregado, tanto en sus funciones y seguridad, como en su flexibilidad.*
  
 **Gestores de base de datos de acceso libre**
 Dos de los principales y más utilizados gestores de pago, que son de acceso libre (Open Source) son los siguientes:
 
 ***MySQL***
-           *Este es de simple instalación y actúa de lado del cliente o servidor, es de código abierto y tiene licencia comercial disponible. Pertenece a Oracle Corporation y gestiona las bases de datos relacionales, con funciones multiusuario y es el más usado dentro del software libre. Requiere de poca memoria y procesador para su funcionamiento, lo que se traduce en mayor velocidad en sus operaciones. Se usa principalmente para el desarrollo Web.*
+*Este es de simple instalación y actúa de lado del cliente o servidor, es de código abierto y tiene licencia comercial disponible. Pertenece a Oracle Corporation y gestiona las bases de datos relacionales, con funciones multiusuario y es el más usado dentro del software libre. Requiere de poca memoria y procesador para su funcionamiento, lo que se traduce en mayor velocidad en sus operaciones. Se usa principalmente para el desarrollo Web.*
  
 ***Fire Bird***
-            *De gran potencia y muy sencillo a la vez, este sistema de gestión de base de datos relacional SQL, es uno de los mejores gestores Open Source (Código abierto) o libres. Es compatible con Windows y Linux. Tiene buen soporte para los procedimientos almacenados, las transacciones compatibles con ACID y con los métodos de acceso múltiple como Nativo, Python, .NET, etc...*
+*De gran potencia y muy sencillo a la vez, este sistema de gestión de base de datos relacional SQL, es uno de los mejores gestores Open Source (Código abierto) o libres. Es compatible con Windows y Linux. Tiene buen soporte para los procedimientos almacenados, las transacciones compatibles con ACID y con los métodos de acceso múltiple como Nativo, Python, .NET, etc...*
 
-### Diseño de base de datos relacionales
-La metodología de diseño de base de datos relacionales se ha consolidado satisfaciendo las propiedades de generalidad, calidad de producto y facilidad de uso.
-#### Diseño conceptual
-Definir las entidades y relaciones entre ellos de forma abstracta, sin centrarse en ningún modelo lógico en concreto como el relacional, orientado a objetos, jerárquico o de red.
-- Herramienta: Modelo conceptual de datos, se usa alguna variante del modelo entidad-relación para las bases de datos relacionales.
-- Resultado: Esquema conceptual de la base de datos.
-#### Diseño lógico
-Su objetivo es definir el esquema de la base de datos según el modelo que implementa el SGBD objetivo.
-- Herramienta: Modelo lógico de datos. Se usa el modelo lógico que implemente el sistema de gestión de bases de datos objetivo, pero es independiente de los aspectos físicos. Usan técnicas formales para verificar la calidad del esquema lógico; la más usual es la normalización. En el modelo relacional usan las tablas.
-- Resultado: Esquema lógico de la base de datos.
-#### Diseño físico
-Su objetivo es definir el esquema físico de la base de datos de forma que se den todas las instrucciones para que un DBA _(Data Base Administrator)_ pueda implementar la base de datos sin ninguna ambigüedad. En esta etapa se considera el rendimiento.
-- Herramienta: Modelo físico de datos. Se consideran todos los detalles de la implementación física: organización de archivos e índices para el SGBD considerado.
-- Resultado: Esquema físico de la base de datos.
-> Especificaciones(en lenguaje natural) ---Diseño conceptual---> Esquema conceptual(Modelo entidad-relación) ---Diseño lógico---> Esquema lógico(Diseño de tablas relacionales) ---Diseño físico---> Esquema físico(Organización de archivos e indices)
-#### Diseño conceptual
-El modelo entidad-relación que permite diseñar el esquema conceptual de una BD, y es muy adecuado para las BDs relaciones. Su resultado es un diagrama entidad-relación.
-**En este apartado se usará de ejemplo de aplicación a las necesidades de una secretaria de un centro docente, en la que hay alumnos matriculados en asignaturas y profesores que las imparten en ciertas aulas. Los alumnos tendrán una nota determinada en cada asignatura en que están matriculados.**
-#### Conceptos
-- **Entidad:** Es el menor objeto con significado en una instancia. Por ej. para el diseño de una BD de la secretaría de un centro docente, el alumno con los siguientes datos:
->  DNI = 01234567Z
->  Nombre y apellidos = Manuel Vázquez Prieto
->  Teléfono = 91-12345678
->  Domicilio = Calle del Jazmín 7, 4 Izq.
-Constituye una entidad. Igual sucede con cada asignatura concreta, cada profesor, etc.
-En el caso del enfoque "clásico" correspondería a cada registro guardado en un fichero.
-
-- **Atributo:** Es cada uno de los componentes que determinan una entidad.
-Cada atributo tiene asociado un dominio: el conjunto de valores que puede tomar.
-<!-- La entidad del ejemplo anterior viene determinada por los valores de sus atributos DNI, Nombre y Apellidos, Teléfono, Domicilio y COU. -->
-En el enfoque clásico serían los campos de los registros.
-- **Atributos monovalorados y multivalorados:** Los atributos multivalorados son los que pueden contener más de un valor simultáneamente, y monovalorados a los que sólo pueden contener un valor.
-<!--Por ejemplo, una persona puede tener varios números de teléfono (casa, trabajo, móvil) y puede que nos interese tenerlos todos. En este caso haremos de teléfono un atributo multivalorado. -->
-- **Atributos simples y compuestos:** Un atributo es compuesto cuando puede descomponerse en otros componentes o atributos más pequeños, y simple en otro caso.
-<!-- Por ejemplo, en el caso del domicilio puede que nos interese descomponerlo a su vez en calle, el número y la ciudad por separado. -->
-- **Clave:** Es un atributo o conjunto de atributos cuyos valores identifican unívocamente cada entidad.
-<!-- Por ejemplo, DNI es un atributo clave del tipo de entidad Alumnos. Esto significa que los valores de la clave no se pueden repetir en el conjunto de entidades. En el ejemplo anterior ningún DNI se debería repetir en una instancia del tipo de entidad Alumnos. -->
-#### El concepto de clave distingue tres claves diferentes:
-- **Superclave:** Es cualquier conjunto de atributos que pueden identificar unívocamente a una tupla.
-- **Clave candidata:** Es el menor conjunto de atributos que puede formar clave. Puede haber varias en una tabla.
-- **Clave primaria:** Es la clave candidata que distingue el usuario para identificar unívocamente cada tupla. Es importante en cuanto alaspecto del rendimiento, como se verá en el apartado dedicado al diseño físico.
-- **Tipo de entidad:** Es el conjunto de entidades que comparten los mismos atributos (aunque con diferentes valores para ellos).
-<!-- Por ejemplo, Alumnos será un tipo de entidad que representa cualquier conjunto de entidades en el que todas tengan como atributos
-DNI, Nombre y Apellidos, ... y valores dentro de los dominios correspondientes. Asignaturas será otro tipo de entidad, etc. -->
-- **Intuición:** En el enfoque "clásico" sería el tipo de los registros. Estamos describiendo el esquema de la base de datos.
-- **Relación:** Es una correspondencia entre dos o más entidades. Se habla de relaciones binarias cuando la correspondencia es entre dos entidades, ternarias cuando es entre tres, y así sucesivamente.
-<!-- Por ejemplo, la relación (José García, Bases de datos) es una relación entre dos entidades que indica que el alumno José García está
-matriculado en la asignatura Bases de datos. -->
-- **Tipos de relación:** Representan a todas las posibles relaciones entre entidades del mismo tipo.
-<!-- Por ejemplo, el tipo de relación matrícula relaciona el tipo de entidad alumnos con el tipo de entidad asignaturas. -->
-**Observaciones:**
-- Las relaciones también pueden tener atributos. 
-<!-- Por ejemplo, Matrícula puede tener el atributo Nota que indica la nota que el alumno ha obtenido en una asignatura determinada. -->
-> Es posible que el mismo tipo de entidad aparezca dos o más veces en un tipo de relación. En este caso se asigna un nombre a cada papel que hace el tipo de entidad en el tipo de relación. 
-<!-- Por ejemplo, algunos profesores tienen un supervisor, por lo que se define un tipo de relación Supervisa que relaciona profesores con profesores, el primero tendrá el papel de supervisor y el segundo de supervisado. -->
-### Diagramas entidad-relación (E-R)
-El diseño del modelo E-R a partir del análisis inicial no es directo. A un mismo análisis le corresponden muchos diseños "candidatos". Hay varios criterios, pero ninguno es definitivo. De un buen diseño depende:
-- Eficiencia: Es muy importante en las BD cuando se manejan grandes cantidades de datos.
-
-- Simplicidad del código: Se cometen menos errores.
-- Flexibilidad: Se refiere a que el diagrama sea fácil de modificar.
-Los componentes básicos de los diagramas E-R son los atributos, los tipos de entidades y los tipos de relaciones.
-
-![Tipos de entidades y atributos](https://github.com/sgtbranca/ISPC/blob/main/tipos%20de%20entidades%20y%20atributos.png)
-
-### Elección de los tipos de entidad y sus atributos
-De la especificación del problema de la secretaría se deduce que va ha haber un tipo de entidad alumnos, pero no cuáles son sus atributos. ¿Debe incluir las asignaturas en las que está matriculado? La respuesta es no y hacerlo así sería un error grave. Aparte de la idea 'filosófica’ (cada asignatura es un objeto con significado propio, es decir, una entidad), al mezclar en una sola entidad alumnos y asignaturas cometemos cuatro errores:
-1. Un alumno no tiene una asignatura asociada sino un conjunto de asignaturas asociadas. En cambio, sí tiene un DNI asociado, una dirección asociada, etc. Por tanto las entidades serán de la forma:
-> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
-> Cod = MD, Título = Matemática Discreta, Créditos=9},
-> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
-> Cod = IS, Título = Ingeniería del Software, Créditos = X}
-> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
-> Cod=LPI, Título = Laboratorio de programación I, Créditos = X}
-
-> Hay redundancia en la información de alumnos: se repite en cada entidad.
-2. Las asignaturas son siempre las mismas, con lo que por cada alumno que se matricula en la misma asignatura hay que repetir toda la información:
-> { DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567, … ,
-> Asignaturas = { {Cod = MD, Título = …}, {COD = IS , Título = …},
-> {Cod = LPI , Título = …} } }
-> { DNI = 0000001, Nomb.Ape = Eva Manzano, Telf. = 01234567, … ,
-> Asignaturas = { {Cod = MD, Título = …}, {COD = IS , Título = …},
-> {Cod = BDSI , Título = …} } }
-
-> En este caso hay redundancia en la información de las asignaturas.
-3. Por cada profesor hay que apuntar las asignaturas que imparte. La información de las asignaturas debe estar por tanto relacionada con la de los profesores, pero ya está incluida con los alumnos. Hay que repetir la información de las asignaturas por lo que se consigue más redundancia.
-
-4. No se pueden guardar los datos de una asignatura hasta que no se matricule un alumno en ella. Puede ser que en secretaría quieran meter los datos de las asignaturas antes de empezar el proceso de matrícula:
-> No pueden. Una solución sería incluirlos con los datos de los alumnos vacíos (nulos), lo cual no sería nada aconsejable. Los valores nulos se deben evitar siempre que sea posible.
-Por tanto, hay que distinguir entre el tipo de entidad Alumnos y el tipo de entidad Asignaturas. Ambas se relacionarán mediante un tipo de relación Matrícula. Los restantes tipos de entidad serán: Profesores y Aulas.
-Los atributos de cada tipo de entidad:
-- Alumnos: DNI, Apellidos y Nombre, Domicilio, Teléfono y COU
-- Asignaturas: Código, Título, Créditos
-- Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
-- Aulas: Edificio y Número
-Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
-
-
-
-
-# Introducción a las Bases de Datos
-## La necesidad de gestionar datos 
+## Introducción a las Bases de Datos
+### La necesidad de gestionar datos 
 
  
 Si bien siempre ha existido la necesidad de gestionar datos por más antiguo que fuera el método, la llegada del ordenador significo un gran avance en la historia de las BDD o SGBBD y con esto su cada vez más demanda de datos, y eso ha incrementado todavía más con la expansión que internet ha tenido en estos años. 
@@ -204,7 +104,7 @@ Nada de esto sería posible de no ser porque la ciencia de las BDD se mantiene e
 
  
 
-## Ficheros 
+### Ficheros 
 
 Los ficheros o archivos son la herramienta fundamental de trabajo en una computadora, inclusive hoy en día se sigue almacenando la información en ficheros, aunque de una estructura cada vez más compleja. 
 
@@ -234,9 +134,9 @@ Se pueden realizar las siguientes operaciones sobre los ficheros:
 
  
 
-## Tipos de ficheros 
+### Tipos de ficheros 
 
-### Ficheros secuenciales 
+#### Ficheros secuenciales 
 
 Son aquellos en los que los datos se ordenan en el orden que fueron grabados, es decir que para leer los últimos datos es necesario pasar por los anteriores primero 
 
@@ -262,7 +162,7 @@ Son aquellos en los que los datos se ordenan en el orden que fueron grabados, es
 
  
 
-## Ficheros de acceso directo o aleatorio: 
+#### Ficheros de acceso directo o aleatorio: 
 
 Es posible leer una posición concreta del fichero si sabemos la posición del dato y el tamaño 
 
@@ -291,7 +191,7 @@ Para almacenar registros lo único que necesitamos es saber el tamaño del mismo
 - Las consultas sobre multitud de registros son más lentas que en el caso anterior. 
 
  
-## Ficheros secuenciales encadenados: 
+#### Ficheros secuenciales encadenados: 
 
 Son ficheros secuenciales gestionados mediante punteros, se crean datos especiales para asignar la dirección de cada registro del fichero. 
 
@@ -315,7 +215,7 @@ Son ficheros secuenciales gestionados mediante punteros, se crean datos especial
 
  
 
-### Ficheros secuenciales indexados: 
+#### Ficheros secuenciales indexados: 
 
 Se utilizan 3 ficheros: 
 
@@ -344,7 +244,7 @@ Para no tener demasiados archivos en desbordamiento (lo que restaría velocidad)
 
  
 
-### Ficheros indexado – encadenados: 
+#### Ficheros indexado – encadenados: 
 
  
 
@@ -370,7 +270,7 @@ En otros casos los datos antes de ser eliminados definitivamente pasan a un fich
 
  
 
-## Fragmentación y compactación de datos 
+### Fragmentación y compactación de datos 
 
 La fragmentación en un archivo es cuando este tiene espacios vacíos dentro del mismo debido al borrado de datos u a otras causar. Esto puede causar que el archivo sea mas pesado y provoque que la lectura y escritura del fichero sea mas lenta. 
 
@@ -383,9 +283,9 @@ De las siguientes maneras:
 - Aprovechar huecos. De forma que los nuevos registros se inserten en esos huecos. Esta técnica suele requerir un paso previo para reorganizar esos huecos. 
 
 
-# Sistemas gestores de base de datos
+#### Sistemas gestores de base de datos
 
-### Sistemas de Información orientados a procesos
+#### Sistemas de Información orientados a procesos
 
 Antes de la década del setenta, la información se trataba y se gestionaba utilizando los típicos sistemas de gestión de archivos que iban soportados sobre un sistema operativo (consistían en un conjunto de programas que definían y trabajaban sus propios datos). Los datos se almacenan en archivos y los programas utilizan estos archivos para manipular la información. Si la estructura de los archivos cambia, todos los programas que los utilicen se deben modificar.
 - La definición de los datos se encuentra codificada dentro de los programas
@@ -411,7 +311,8 @@ En base a eso, se empezó a estructurar los datos y organizar los datos de forma
 
 **Problemas de integridad de datos (datos inconsistentes)**: Los valores almacenados en los archivos deben cumplir con restricciones de consistencia, un proceso cambia sus datos y no el resto, el mismo dato puede tener valores distintos según qué aplicación acceda a él.
 
-### Sistemas de Información orientados a los datos. Bases de Datos
+## Sistemas Gestores de Bases de Datos. (Estructura interna)
+### Sistemas de Información orientados a los datos. Bases de Datos.
 
 El objetivo primordial de un gestor es proporcionar eficiencia y seguridad a la hora de extraer o almacenar información en las BD.
 
@@ -577,3 +478,160 @@ Equipo de mantenimiento: Dan soporte a los usuarios en el trabajo diario.
 
 **Ocasionales:** Utilizan un acceso mínimo a la bdd a través de una aplicación que permite consultar ciertos datos.
 
+### Diseño de base de datos relacionales
+La metodología de diseño de base de datos relacionales se ha consolidado satisfaciendo las propiedades de generalidad, calidad de producto y facilidad de uso.
+#### Diseño conceptual
+Definir las entidades y relaciones entre ellos de forma abstracta, sin centrarse en ningún modelo lógico en concreto como el relacional, orientado a objetos, jerárquico o de red.
+- Herramienta: Modelo conceptual de datos, se usa alguna variante del modelo entidad-relación para las bases de datos relacionales.
+- Resultado: Esquema conceptual de la base de datos.
+#### Diseño lógico
+Su objetivo es definir el esquema de la base de datos según el modelo que implementa el SGBD objetivo.
+- Herramienta: Modelo lógico de datos. Se usa el modelo lógico que implemente el sistema de gestión de bases de datos objetivo, pero es independiente de los aspectos físicos. Usan técnicas formales para verificar la calidad del esquema lógico; la más usual es la normalización. En el modelo relacional usan las tablas.
+- Resultado: Esquema lógico de la base de datos.
+#### Diseño físico
+Su objetivo es definir el esquema físico de la base de datos de forma que se den todas las instrucciones para que un DBA _(Data Base Administrator)_ pueda implementar la base de datos sin ninguna ambigüedad. En esta etapa se considera el rendimiento.
+- Herramienta: Modelo físico de datos. Se consideran todos los detalles de la implementación física: organización de archivos e índices para el SGBD considerado.
+- Resultado: Esquema físico de la base de datos.
+> Especificaciones(en lenguaje natural) ---Diseño conceptual---> Esquema conceptual(Modelo entidad-relación) ---Diseño lógico---> Esquema lógico(Diseño de tablas relacionales) ---Diseño físico---> Esquema físico(Organización de archivos e indices)
+#### Diseño conceptual
+El modelo entidad-relación que permite diseñar el esquema conceptual de una BD, y es muy adecuado para las BDs relaciones. Su resultado es un diagrama entidad-relación.
+**En este apartado se usará de ejemplo de aplicación a las necesidades de una secretaria de un centro docente, en la que hay alumnos matriculados en asignaturas y profesores que las imparten en ciertas aulas. Los alumnos tendrán una nota determinada en cada asignatura en que están matriculados.**
+#### Conceptos
+- **Entidad:** Es el menor objeto con significado en una instancia. Por ej. para el diseño de una BD de la secretaría de un centro docente, el alumno con los siguientes datos:
+>  DNI = 01234567Z
+>  Nombre y apellidos = Manuel Vázquez Prieto
+>  Teléfono = 91-12345678
+>  Domicilio = Calle del Jazmín 7, 4 Izq.
+Constituye una entidad. Igual sucede con cada asignatura concreta, cada profesor, etc.
+En el caso del enfoque "clásico" correspondería a cada registro guardado en un fichero.
+
+- **Atributo:** Es cada uno de los componentes que determinan una entidad.
+Cada atributo tiene asociado un dominio: el conjunto de valores que puede tomar.
+<!-- La entidad del ejemplo anterior viene determinada por los valores de sus atributos DNI, Nombre y Apellidos, Teléfono, Domicilio y COU. -->
+En el enfoque clásico serían los campos de los registros.
+- **Atributos monovalorados y multivalorados:** Los atributos multivalorados son los que pueden contener más de un valor simultáneamente, y monovalorados a los que sólo pueden contener un valor.
+<!--Por ejemplo, una persona puede tener varios números de teléfono (casa, trabajo, móvil) y puede que nos interese tenerlos todos. En este caso haremos de teléfono un atributo multivalorado. -->
+- **Atributos simples y compuestos:** Un atributo es compuesto cuando puede descomponerse en otros componentes o atributos más pequeños, y simple en otro caso.
+<!-- Por ejemplo, en el caso del domicilio puede que nos interese descomponerlo a su vez en calle, el número y la ciudad por separado. -->
+- **Clave:** Es un atributo o conjunto de atributos cuyos valores identifican unívocamente cada entidad.
+<!-- Por ejemplo, DNI es un atributo clave del tipo de entidad Alumnos. Esto significa que los valores de la clave no se pueden repetir en el conjunto de entidades. En el ejemplo anterior ningún DNI se debería repetir en una instancia del tipo de entidad Alumnos. -->
+#### El concepto de clave distingue tres claves diferentes:
+- **Superclave:** Es cualquier conjunto de atributos que pueden identificar unívocamente a una tupla.
+- **Clave candidata:** Es el menor conjunto de atributos que puede formar clave. Puede haber varias en una tabla.
+- **Clave primaria:** Es la clave candidata que distingue el usuario para identificar unívocamente cada tupla. Es importante en cuanto alaspecto del rendimiento, como se verá en el apartado dedicado al diseño físico.
+- **Tipo de entidad:** Es el conjunto de entidades que comparten los mismos atributos (aunque con diferentes valores para ellos).
+<!-- Por ejemplo, Alumnos será un tipo de entidad que representa cualquier conjunto de entidades en el que todas tengan como atributos
+DNI, Nombre y Apellidos, ... y valores dentro de los dominios correspondientes. Asignaturas será otro tipo de entidad, etc. -->
+- **Intuición:** En el enfoque "clásico" sería el tipo de los registros. Estamos describiendo el esquema de la base de datos.
+- **Relación:** Es una correspondencia entre dos o más entidades. Se habla de relaciones binarias cuando la correspondencia es entre dos entidades, ternarias cuando es entre tres, y así sucesivamente.
+<!-- Por ejemplo, la relación (José García, Bases de datos) es una relación entre dos entidades que indica que el alumno José García está
+matriculado en la asignatura Bases de datos. -->
+- **Tipos de relación:** Representan a todas las posibles relaciones entre entidades del mismo tipo.
+<!-- Por ejemplo, el tipo de relación matrícula relaciona el tipo de entidad alumnos con el tipo de entidad asignaturas. -->
+**Observaciones:**
+- Las relaciones también pueden tener atributos. 
+<!-- Por ejemplo, Matrícula puede tener el atributo Nota que indica la nota que el alumno ha obtenido en una asignatura determinada. -->
+> Es posible que el mismo tipo de entidad aparezca dos o más veces en un tipo de relación. En este caso se asigna un nombre a cada papel que hace el tipo de entidad en el tipo de relación. 
+<!-- Por ejemplo, algunos profesores tienen un supervisor, por lo que se define un tipo de relación Supervisa que relaciona profesores con profesores, el primero tendrá el papel de supervisor y el segundo de supervisado. -->
+### Diagramas entidad-relación (E-R)
+El diseño del modelo E-R a partir del análisis inicial no es directo. A un mismo análisis le corresponden muchos diseños "candidatos". Hay varios criterios, pero ninguno es definitivo. De un buen diseño depende:
+- Eficiencia: Es muy importante en las BD cuando se manejan grandes cantidades de datos.
+
+- Simplicidad del código: Se cometen menos errores.
+- Flexibilidad: Se refiere a que el diagrama sea fácil de modificar.
+Los componentes básicos de los diagramas E-R son los atributos, los tipos de entidades y los tipos de relaciones.
+
+![Tipos de entidades y atributos](https://github.com/sgtbranca/ISPC/blob/main/tipos%20de%20entidades%20y%20atributos.png)
+
+### Elección de los tipos de entidad y sus atributos
+De la especificación del problema de la secretaría se deduce que va ha haber un tipo de entidad alumnos, pero no cuáles son sus atributos. ¿Debe incluir las asignaturas en las que está matriculado? La respuesta es no y hacerlo así sería un error grave. Aparte de la idea 'filosófica’ (cada asignatura es un objeto con significado propio, es decir, una entidad), al mezclar en una sola entidad alumnos y asignaturas cometemos cuatro errores:
+1. Un alumno no tiene una asignatura asociada sino un conjunto de asignaturas asociadas. En cambio, sí tiene un DNI asociado, una dirección asociada, etc. Por tanto las entidades serán de la forma:
+> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
+> Cod = MD, Título = Matemática Discreta, Créditos=9},
+> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
+> Cod = IS, Título = Ingeniería del Software, Créditos = X}
+> {DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567,
+> Cod=LPI, Título = Laboratorio de programación I, Créditos = X}
+
+> Hay redundancia en la información de alumnos: se repite en cada entidad.
+2. Las asignaturas son siempre las mismas, con lo que por cada alumno que se matricula en la misma asignatura hay que repetir toda la información:
+> { DNI = 12345678V, Nomb.Ape = Luis Martínez, Telf. = 01234567, … ,
+> Asignaturas = { {Cod = MD, Título = …}, {COD = IS , Título = …},
+> {Cod = LPI , Título = …} } }
+> { DNI = 0000001, Nomb.Ape = Eva Manzano, Telf. = 01234567, … ,
+> Asignaturas = { {Cod = MD, Título = …}, {COD = IS , Título = …},
+> {Cod = BDSI , Título = …} } }
+
+> En este caso hay redundancia en la información de las asignaturas.
+3. Por cada profesor hay que apuntar las asignaturas que imparte. La información de las asignaturas debe estar por tanto relacionada con la de los profesores, pero ya está incluida con los alumnos. Hay que repetir la información de las asignaturas por lo que se consigue más redundancia.
+
+4. No se pueden guardar los datos de una asignatura hasta que no se matricule un alumno en ella. Puede ser que en secretaría quieran meter los datos de las asignaturas antes de empezar el proceso de matrícula:
+> No pueden. Una solución sería incluirlos con los datos de los alumnos vacíos (nulos), lo cual no sería nada aconsejable. Los valores nulos se deben evitar siempre que sea posible.
+Por tanto, hay que distinguir entre el tipo de entidad Alumnos y el tipo de entidad Asignaturas. Ambas se relacionarán mediante un tipo de relación Matrícula. Los restantes tipos de entidad serán: Profesores y Aulas.
+Los atributos de cada tipo de entidad:
+- Alumnos: DNI, Apellidos y Nombre, Domicilio, Teléfono y COU
+- Asignaturas: Código, Título, Créditos
+- Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
+- Aulas: Edificio y Número
+Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
+### Elección de los tipos de relación
+El primer tipo de relación es Matrícula que relaciona cada alumno con las asignaturas en las que está matriculado. Además, está relación tiene un atributo, nota, que se asocia cada tupla de la relación. El segundo tipo de relación es Supervisa que va de Profesores a Profesores y que incluye los papeles Supervisor y Supervisado. La última es Imparte, que relaciona cada profesor con la asignatura que imparte y el aula en la que da esa asignatura. Aquí también surgen varias posibilidades:
+1. Hacer dos relaciones binarias. Por ejemplo, profesor con asignatura y asignatura con aula.
+2. Hacer una relación ternaria entre profesores, aulas y asignaturas.
+3. Hacer tres relaciones binarias Profesores-Asignaturas, Profesores-Aulas, Asignaturas-Aulas.
+
+**Diferencias:**
+1. En las opciones 1 y 3 se permite que un profesor imparta una asignatura que aún no tiene aula (esto puede ser deseable o no).
+2. El problema del punto 1 es:
+> Profesores-Asignaturas = { ({DNI=6666666, NombreYApe=Rómulo Melón},{Cod=MD,….}) …}
+> Asignaturas-Aulas = { ({Cod=MD….},{Edif=Mates, NumAula=S103}), ({Cod=MD….},{Edif=Biológicas, =104}) }
+Estas relaciones son posibles, hay más de un curso de primero y por eso la misma asignatura se imparte en varias aulas. Ahora bien, Don Rómulo quiere saber en qué aula debe dar su clase de Matemática discreta, y para ello pregunta en secretaría. ¿Qué se le contesta?
+
+Sin embargo, con la propuesta 2 sí se le puede asignar a cada profesor un aula concreta para cada una de sus asignaturas.
+
+El problema del punto 3 sigue siendo el mismo:
+> Profesores-asignaturas = { ({DNI=6666666, NombreYApe=Rómulo Melón,…},{Cod=MD,….}),({DNI=6666666, NombreYApe=Rómulo Melón,…},{Cod=IS,….}),…}
+> Asignaturas-Aulas ={ ({Cod=MD….}, {Edif=Mates, NumAula=S103}),({Cod=MD….}, {Edif=Biológicas, =104}), ({Cod=IS….}, {Edif=Mates, NumAula=S103}), ({Cod=IS….}, {Edif=Biológicas, NumAula=104}) }
+> Profesores-Aulas = {({DNI=6666666, NombreYApe=Rómulo Melón,…}, {Edif=Mates, NumAula=S103}), ({DNI=6666666, NombreYApe=Rómulo Melón,…}, {Edif=Biológicas, NumAula=104}), …}
+
+<!-- Don Rómulo sabe que da 2 asignaturas, cada una en un aula, pero sigue sin saber a dónde tiene que ir a dar MD.-->
+> Conclusión: Una relación ternaria tiene en general más información que 3 binarias.
+
+El diagrama entidad-relación del ejemplo quedaría como se ilustra a continuación:
+![Diagrama-entidad-relacion]()
+
+### Adelanto de las restricciones de integridad
+
+Con los elementos anteriores tenemos una primera aproximación a los diagramas E-R en la que tenemos definidos los elementos principales de los diagramas. Sin embargo, en el modelo E-R también se pueden definir numerosas restricciones de integridad sobre los tipos de entidades y tipos de relaciones.
+Por ejemplo, en la relación Supervisa un profesor puede tener a lo sumo un supervisor, pero el diagrama anterior permite que no debería ser una instancia válida de la relación.
+Para evitar estas situaciones se introducen las denominadas restricciones de integridad de la base de datos. Las restricciones de integridad (o simplemente restricciones) son propiedades que se asocian a un tipo de entidad o de relación. Las instancias válidas del tipo de entidad o relación son aquellas en las que se verifique el conjunto de restricciones asociadas. Las restricciones son parte del diseño de la base de datos igual que los tipos de entidades o de relaciones. Los SGBD se encargan de comprobar que la instancia verifica las restricciones más usuales. En el ejemplo anterior, una vez incluida la restricción, el SGBD no nos permitiría insertar la segunda fila.
+Un tipo de restricción de integridad que interesa conocer en esta etapa es la restricción de clave. Una restricción de clave consiste en imponer que un conjunto de atributos sea el que defina unívocamente a una fila de un tipo de entidades. Por ejemplo, en el tipo de entidades Alumnos se puede elegir DNI para identificar a un alumno en concreto, pero no sería conveniente usar el atributo Nombre y apellidos porque es muy posible encontrar a dos personas con los mismos nombres y apellidos. Por motivos de eficiencia conviene que el número de atributos elegidos sea el menor posible. A veces, es posible elegir varios conjuntos de atributos que contengan el mismo número de atributos, pero se suele escoger uno de estos conjuntos como el representativo, que se denomina clave primaria.
+La idea de este tipo de restricción se puede entender con el siguiente ejemplo: supongamos que deseamos tener información sobre el país de nacimiento de personas. Habría una relación Nacida entre las entidades Personas y Países, como se muestra a continuación:
+![persona-nacida-pais]()
+Si bien muchas personas pueden haber nacido en un país, una persona en concreto sólo puede haber nacido en un país. Esto se expresa en el diagrama E-R con una flecha que indica que una persona ha nacido en un país en concreto. Leyendo la relación en el sentido contrario diríamos que en un país pueden haber nacido muchas personas (el segmento que une Nacida con personas no lleva flecha).
+![persona-nacida-pais2]()
+El último tipo de restricción de integridad que interesa introducir ahora es la participación total. Se refiere a que podamos encontrar cada entidad de un tipo de entidad en la relación que lo liga con otro u otros. Es decir, cada alumno definido en el tipo de entidad Alumnos debemos encontrarlo en la relación Matrícula, relacionado con la asignatura en la que esté matriculado. En el diagrama E-R se expresa con una línea doble, como se ve a continuación:
+[alumnos-matricula-asignaturas]()
+ 3.3. Diseño lógico
+
+   El diseño lógico es la segunda etapa del diseño de bases de datos en general y de las bases de datos relacionales en particular. En nuestro caso, las BD relacionales, el resultado de esta etapa es un esquema relacional basado en un modelo relacional. En este apartado se describirá en primer lugar el modelo relacional y en segundo lugar cómo pasar de un esquema entidad-relación a un esquema relacional.
+
+### El modelo relacional
+   Este modelo fue creado por Codd a principios de los 70 al que dotó de una sólida base teórica. Actualmente está implementado en la mayoría de los SGBD usados en la empresa. El concepto principal de este modelo es la relación o tabla. Es importante no confundir la tabla con las relaciones del modelo E-R. Aquí las relaciones se aplican tanto a tipos de relaciones como a tipos de entidades. En este modelo no se distingue entre tipos de entidades y tipos de relaciones porque la idea es que una relación o tabla expresa la
+relación entre los tipos de valores que contiene.
+
+A continuación se introducen los conceptos de este modelo:
+                • Entidad. Igual que en el modelo E-R. También se les llama tuplas o filas de la relación.
+                • Atributo. Igual que en el modelo E-R. También se le llaman campos o columnas de la relación. El dominio de los atributos tiene que ser simple: no se admiten atributos multivalorados ni compuestos.
+                • Esquema de una relación. Viene dado por el nombre de la relación y una lista de atributos. Es el tipo de entidad.
+                • Conjunto de entidades. Relación o tabla.
+    Por ejemplo, el tipo de entidad Alumnos del modelo E-R del apartado del diseño conceptual se representaría como la siguiente relación:
+                                Alumnos (DNI, NombreYApellidos, Domicilio, Teléfono, COU) 
+   El orden de los atributos en la lista no importa. Lo fijamos porque nos viene bien para representarlo como tabla, pero cualquier permutación es válida.
+
+            • Clave. Igual que en el modelo E-R. Hay que darse cuenta que en el modelo relacional todas las tablas deben tener claves, y que algunas tablas van a representar relaciones del esquema E-R.
+            • Instancia de una relación. Son conjuntos de entidades. Cada entidad se representa como una tupla. Cada componente de la tupla corresponde con el valor del atributo correspondiente, según el orden enunciado en el esquema de la relación.
+   Por ejemplo, una instancia de la relación Alumnos sería:
+                                    { (01234567Z, Manuel Vázquez Prieto, Calle del Jazmín 7 4 Izq, 91-12345678, COU = SÍ), ....}
+
+En el modelo relacional no se representan diagramas del esquema de la BD. Por el contrario, el esquema relacional se representa por los conjuntos de entidades como hemos visto antes (nombre de la tabla y entre paréntesis el nombre de sus atributos).
