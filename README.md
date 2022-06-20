@@ -514,33 +514,29 @@ En el caso del enfoque "clásico" correspondería a cada registro guardado en un
 
 - **Atributo:** Es cada uno de los componentes que determinan una entidad.
 Cada atributo tiene asociado un dominio: el conjunto de valores que puede tomar.
-<!-- La entidad del ejemplo anterior viene determinada por los valores de sus atributos DNI, Nombre y Apellidos, Teléfono, Domicilio y COU. -->
+
 En el enfoque clásico serían los campos de los registros.
 - **Atributos monovalorados y multivalorados:** Los atributos multivalorados son los que pueden contener más de un valor simultáneamente, y monovalorados a los que sólo pueden contener un valor.
-<!--Por ejemplo, una persona puede tener varios números de teléfono (casa, trabajo, móvil) y puede que nos interese tenerlos todos. En este caso haremos de teléfono un atributo multivalorado. -->
+
 - **Atributos simples y compuestos:** Un atributo es compuesto cuando puede descomponerse en otros componentes o atributos más pequeños, y simple en otro caso.
-<!-- Por ejemplo, en el caso del domicilio puede que nos interese descomponerlo a su vez en calle, el número y la ciudad por separado. -->
+
 - **Clave:** Es un atributo o conjunto de atributos cuyos valores identifican unívocamente cada entidad.
-<!-- Por ejemplo, DNI es un atributo clave del tipo de entidad Alumnos. Esto significa que los valores de la clave no se pueden repetir en el conjunto de entidades. En el ejemplo anterior ningún DNI se debería repetir en una instancia del tipo de entidad Alumnos. -->
 
 #### El concepto de clave distingue tres claves diferentes:
 - **Superclave:** Es cualquier conjunto de atributos que pueden identificar unívocamente a una tupla.
 - **Clave candidata:** Es el menor conjunto de atributos que puede formar clave. Puede haber varias en una tabla.
 - **Clave primaria:** Es la clave candidata que distingue el usuario para identificar unívocamente cada tupla. Es importante en cuanto alaspecto del rendimiento, como se verá en el apartado dedicado al diseño físico.
 - **Tipo de entidad:** Es el conjunto de entidades que comparten los mismos atributos (aunque con diferentes valores para ellos).
-<!-- Por ejemplo, Alumnos será un tipo de entidad que representa cualquier conjunto de entidades en el que todas tengan como atributos
-DNI, Nombre y Apellidos, ... y valores dentro de los dominios correspondientes. Asignaturas será otro tipo de entidad, etc. -->
+
 - **Intuición:** En el enfoque "clásico" sería el tipo de los registros. Estamos describiendo el esquema de la base de datos.
 - **Relación:** Es una correspondencia entre dos o más entidades. Se habla de relaciones binarias cuando la correspondencia es entre dos entidades, ternarias cuando es entre tres, y así sucesivamente.
-<!-- Por ejemplo, la relación (José García, Bases de datos) es una relación entre dos entidades que indica que el alumno José García está
-matriculado en la asignatura Bases de datos. -->
+
 - **Tipos de relación:** Representan a todas las posibles relaciones entre entidades del mismo tipo.
-<!-- Por ejemplo, el tipo de relación matrícula relaciona el tipo de entidad alumnos con el tipo de entidad asignaturas. -->
+
 **Observaciones:**
 - Las relaciones también pueden tener atributos. 
-<!-- Por ejemplo, Matrícula puede tener el atributo Nota que indica la nota que el alumno ha obtenido en una asignatura determinada. -->
-> Es posible que el mismo tipo de entidad aparezca dos o más veces en un tipo de relación. En este caso se asigna un nombre a cada papel que hace el tipo de entidad en el tipo de relación. 
-<!-- Por ejemplo, algunos profesores tienen un supervisor, por lo que se define un tipo de relación Supervisa que relaciona profesores con profesores, el primero tendrá el papel de supervisor y el segundo de supervisado. -->
+
+> Es posible que el mismo tipo de entidad aparezca dos o más veces en un tipo de relación. En este caso se asigna un nombre a cada papel que hace el tipo de entidad en el tipo de relación.
 
 ### Diagramas entidad-relación (E-R)
 El diseño del modelo E-R a partir del análisis inicial no es directo. A un mismo análisis le corresponden muchos diseños "candidatos". Hay varios criterios, pero ninguno es definitivo. De un buen diseño depende:
@@ -620,6 +616,7 @@ Para evitar estas situaciones se introducen las denominadas restricciones de int
 Un tipo de restricción de integridad que interesa conocer en esta etapa es la restricción de clave. Una restricción de clave consiste en imponer que un conjunto de atributos sea el que defina unívocamente a una fila de un tipo de entidades. Por ejemplo, en el tipo de entidades Alumnos se puede elegir DNI para identificar a un alumno en concreto, pero no sería conveniente usar el atributo Nombre y apellidos porque es muy posible encontrar a dos personas con los mismos nombres y apellidos. Por motivos de eficiencia conviene que el número de atributos elegidos sea el menor posible. A veces, es posible elegir varios conjuntos de atributos que contengan el mismo número de atributos, pero se suele escoger uno de estos conjuntos como el representativo, que se denomina clave primaria.
 
 La idea de este tipo de restricción se puede entender con el siguiente ejemplo: supongamos que deseamos tener información sobre el país de nacimiento de personas. Habría una relación Nacida entre las entidades Personas y Países, como se muestra a continuación:
+
 ![persona-nacida-pais]()
 
 Si bien muchas personas pueden haber nacido en un país, una persona en concreto sólo puede haber nacido en un país. Esto se expresa en el diagrama E-R con una flecha que indica que una persona ha nacido en un país en concreto. Leyendo la relación en el sentido contrario diríamos que en un país pueden haber nacido muchas personas (el segmento que une Nacida con personas no lleva flecha).
@@ -639,17 +636,129 @@ Este modelo fue creado por Codd a principios de los 70 al que dotó de una sóli
 relación entre los tipos de valores que contiene.
 
 A continuación se introducen los conceptos de este modelo:
-                • Entidad. Igual que en el modelo E-R. También se les llama tuplas o filas de la relación.
-                • Atributo. Igual que en el modelo E-R. También se le llaman campos o columnas de la relación. El dominio de los atributos tiene que ser simple: no se admiten atributos multivalorados ni compuestos.
-                • Esquema de una relación. Viene dado por el nombre de la relación y una lista de atributos. Es el tipo de entidad.
-                • Conjunto de entidades. Relación o tabla.
-    Por ejemplo, el tipo de entidad Alumnos del modelo E-R del apartado del diseño conceptual se representaría como la siguiente relación:
-                                Alumnos (DNI, NombreYApellidos, Domicilio, Teléfono, COU) 
-   El orden de los atributos en la lista no importa. Lo fijamos porque nos viene bien para representarlo como tabla, pero cualquier permutación es válida.
 
-            • Clave. Igual que en el modelo E-R. Hay que darse cuenta que en el modelo relacional todas las tablas deben tener claves, y que algunas tablas van a representar relaciones del esquema E-R.
-            • Instancia de una relación. Son conjuntos de entidades. Cada entidad se representa como una tupla. Cada componente de la tupla corresponde con el valor del atributo correspondiente, según el orden enunciado en el esquema de la relación.
-   Por ejemplo, una instancia de la relación Alumnos sería:
-                                    { (01234567Z, Manuel Vázquez Prieto, Calle del Jazmín 7 4 Izq, 91-12345678, COU = SÍ), ....}
+- Entidad. Igual que en el modelo E-R. También se les llama tuplas o filas de la relación.
+- Atributo. Igual que en el modelo E-R. También se le llaman campos o columnas de la relación. El dominio de los atributos tiene que ser simple: no se admiten atributos multivalorados ni compuestos.
+- Esquema de una relación. Viene dado por el nombre de la relación y una lista de atributos. Es el tipo de entidad.
+- Conjunto de entidades. Relación o tabla.
+Por ejemplo, el tipo de entidad Alumnos del modelo E-R del apartado del diseño conceptual se representaría como la siguiente relación:
+> **Alumnos** (DNI, NombreYApellidos, Domicilio, Teléfono, COU) 
+El orden de los atributos en la lista no importa. Lo fijamos porque nos viene bien para representarlo como tabla, pero cualquier permutación es válida.
+
+- Clave. Igual que en el modelo E-R. Hay que darse cuenta que en el modelo relacional todas las tablas deben tener claves, y que algunas tablas van a representar relaciones del esquema E-R.
+- Instancia de una relación. Son conjuntos de entidades. Cada entidad se representa como una tupla. Cada componente de la tupla corresponde con el valor del atributo correspondiente, según el orden enunciado en el esquema de la relación.
+Por ejemplo, una instancia de la relación Alumnos sería:
+> { (01234567Z, Manuel Vázquez Prieto, Calle del Jazmín 7 4 Izq, 91-12345678, COU = SÍ), ....}
 
 En el modelo relacional no se representan diagramas del esquema de la BD. Por el contrario, el esquema relacional se representa por los conjuntos de entidades como hemos visto antes (nombre de la tabla y entre paréntesis el nombre de sus atributos).
+### Paso de un esquema E-R a un esquema relacional
+A continuación se describe la forma de traducir cada uno de los elementos que aparecen en el modelo E-R a un esquema relacional.
+
+**Tipos de entidades**
+Para cada tipo de entidad se crea una relación con el mismo nombre y conjunto de atributos. Por ejemplo, en el caso de la BD de secretaría los tipos de entidades dan lugar a las siguientes relaciones:
+
+> Alumnos(DNI, Apellidos y Nombre, Domicilio, Teléfono, COU)
+> Asignaturas(Código, Título, Créditos)
+> Profesores(DNI, Apellidos y nombre, Domicilio, Teléfono)
+> Aulas(Edificio, Número)
+**Tipos de relaciones**
+Para cada tipo de relación R se crea una relación que tiene como atributos:
+
+- Los atributos de la clave primaria de cada tipo de entidad que participa en la relación.
+- Los atributos de la propia relación.
+
+En ocasiones hay que renombrar atributos para evitar tener varios con el mismo nombre.
+Como ejemplo, en el caso de la BD de secretaría los tipos de relación dan lugar a las siguientes relaciones:
+> Matrícula(DNI, Código, Nota)
+> Supervisa(DNISupervisor, DNISupervisado)
+> Imparte(DNI, Código, Edificio, NumAula)
+
+Obsérvese que en la relación Supervisa se han renombrado los atributos DNI para indicar el papel de cada uno de ellos en la relación y además evitar que se use el mismo nombre para más de un atributo,
+**Claves**
+Hay dos casos:
+
+1. La relación proviene de un tipo de entidad en el esquema E-R. La clave es la misma que la del tipo de entidad. 
+Por ejemplo:
+
+> Alumnos(DNI, Apellidos y nombre, Domicilio, Teléfono, COU)
+
+2. La relación proviene de un tipo de relación en el esquema E-R. Si la relación R es un tipo de relación entre varios tipos de entidades se va a construir una relación bajo el modelo E-R a partir de R con los atributos que forman clave primaria en todas las entidades participantes más los propios de R. De ellos formarán clave primaria las claves primarias de cada una de las entidades participantes.
+Por ejemplo:
+
+Matrícula(DNI, Código, Nota)
+
+**Restricciones de cardinalidad**
+Es posible incorporar este tipo de restricciones de integridad cuando se desean indicar relaciones una a una, una a varias y varias a varias. (En el ejemplo de la secretaría tenemos la relación Supervisa, del tipo una a varias). A continuación se muestran estos casos para relaciones binarias, siendo c1 y c2 las claves primarias de E1 y E2, respectivamente:
+1. Una a una.
+
+![cardinalidad-una-a-una]()
+
+De los atributos de la traducción de R al modelo relacional podemos escoger como clave o bien c1 o bien c2, de ellas la más adecuada será la que tenga menos atributos. Esto es posible porque cada entidad de E1 está relacionada con sólo una de E2 y viceversa, por lo que no es posible que la misma entidad de E1 o de E2 aparezca más de una vez en R. Por tanto, cualquiera de sus claves primarias puede ser clave de R.
+
+![cardinalidad-h-m-dni-casadosdni]()
+
+Dado que no se repite ningún valor de las columnas de las dos posibilidades de R, tanto A como B podrían ser clave. Así, tendríamos las alternativas siguientes para la relación:
+> Casados: Casados(DNIH, DNIM) y Casados(DNIH, DNIM).
+
+2. Una a varias
+
+![cardinalidad-una-a-varias]()
+
+En este caso, la clave de R debe ser la clave primaria de c2. Es decir, en la relación R no puede aparecer repetido ningún valor de E2.
+En el ejemplo de las personas nacidas en países, tendríamos una instancia de la relación Nacida:
+
+![id-persona-pais]()
+
+En donde vemos que los valores de los países se pueden repetir en la relación, pero no el identificador de la persona porque, si así fuese, significaría que la misma persona ha nacido en diferentes países. Otro ejemplo es el de la secretaría, en el que la relación Supervisa quedaría Supervisa (DNISupervisor, *_DNISupervisado_*).
+
+3. Varias a varias
+
+![varias-a-varias]()
+
+
+Éste es el caso más general en el que no se puede imponer ninguna restricción además de la ya indicada de clave. Por ejemplo, los tres casos anteriores se referían a relaciones binarias. En el caso de que se trate de relaciones n-arias, supongamos que la relación proviene de un tipo de relación R entre tipos de entidad E1, E2, ..., Ek, entonces:
+- Si todos participan con cardinalidad varios en R, entonces una clave es la unión de las claves de E1, E2, ..., Ek.
+- Si algunos tipos de entidad participan con cardinalidad una en R, entonces uno de ellos puede ser excluido de la superclave.
+
+### Restricciones de integridad
+Hemos visto cómo se traducen las claves de los tipos de entidades y cómo aparecen claves en la traducción de los tipos de relaciones. Sin embargo, no es el único tipo de restricciones de integridad que aparece automáticamente al traducir un esquema E-R en otro relacional. Hay dos: restricciones de integridad referencial y restricciones de participación total.
+
+Las claves y las restricciones de integridad referencial son características que se expresar directamente en la práctica totalidad de los SGBD relacionales. Estos sistemas se ocupan automáticamente de que no se violen estas restricciones. Sin embargo, no ocurre lo mismo con las de participación total y otras restricciones, como se verá en el tema dedicado a las restricciones de integridad.
+
+### Restricciones de integridad referencial
+
+Al traducir un tipo de relación R, en cualquier instancia de R se debe cumplir que los valores de los atributos que hereda de una entidad (de su clave primaria) deben aparecer previamente en el conjunto de entidades. En el ejemplo de los hombres y mujeres casados está claro que en la relación Casados no puede aparecer un valor del DNI de un hombre o de una mujer que no estén previamente en el conjunto de entidades Hombres o Mujeres.
+Es decir:
+
+![hombres-mujeres-incorrecto]()
+
+En esta instancia se estaría dando la idea de que el hombre con DNI 1 está casado con la mujer con DNI 5. Pero no sabemos nada de esta mujer dado que no está en el conjunto de entidades Mujeres (hay que considerar que este tipo de entidad tendría otros muchos atributos, como el nombre y apellidos de la mujer, su domicilio, etc., que podrían ser útiles para la aplicación de la base de datos). No obstante, lo que sí es posible que algunos hombres o algunas mujeres no estén casados entre sí.
+Es necesario, por tanto imponer una restricción de integridad referencial entre los atributos clave heredados de una entidad con las clave de esa entidad. En este ejemplo, se podría expresar:
+> Casados.DNIH ⊆ Hombres.DNI
+> Casados.DNIM ⊆ Mujeres.DNI
+
+Es decir, los valores de DNI que aparecen en el atributo DNIH de Casados deben aparecer previamente en el atributo DNI de Hombres (y lo análogo para las mujeres).
+
+### Restricciones de participación total
+Cuando cada valor de un tipo de entidad debe aparecer en un tipo de relación, como Alumnos en Matrícula, significa que, además de la restricción de integridad referencial comentada en el apartado anterior, se debe cumplir que todo valor de DNI en Alumnos debe aparecer en el atributo DNI de Matrícula. Esto se puede expresar:
+> Alumnos.DNI ⊆ Matrícula.DNI
+
+Por otra parte, dado que la restricción de integridad referencial sobre esta tabla arroja:
+> Matrícula.DNI ⊆ Alumnos.DNI
+Llegamos a la conclusión de que:
+> Matrícula.DNI = Alumnos.DNI
+
+Es decir, si aparece un valor de DNI en Matrícula, también debe aparecer en el atributo DNI de Alumnos, y viceversa.
+
+### Cuestiones de diseño
+![cuestiones-de-diseño]()
+
+En ocasiones es posible combinar dos o más tablas en una sola. Generalmente se combinan por motivos de rendimiento. Por ejemplo, dado el ejemplo de personas nacidas en países:
+Un inconveniente de esta combinación es que, dado que no se exige participación total de Personas en Nacida, no tendremos información del país de nacimiento de algunas personas, y en la tabla Personas va a aparecer un valor NULL (nulo) en el atributo PaísNac, que indica que no se dispone de esa información.
+
+El valor NULL es un valor que puede contener cualquier atributo, y lo soportan todos los SGBD. Es un valor especial que se debe tratar con cuidado y, en general, evitar, porque puede representar muchas cosas, tales como:
+- Ausencia de información.
+- Este atributo no se aplica o no tiene sentido para esta entidad en concreto.
+- Valor desconocido.
+
+Además causan problemas a la hora de realizar consultas sobre la base de datos. Por otra parte, ningún atributo que forme parte de una clave puede tomar el valor NULL.
