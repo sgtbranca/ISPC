@@ -288,9 +288,9 @@ De las siguientes maneras:
 #### Sistemas de Información orientados a procesos
 
 Antes de la década del setenta, la información se trataba y se gestionaba utilizando los típicos sistemas de gestión de archivos que iban soportados sobre un sistema operativo (consistían en un conjunto de programas que definían y trabajaban sus propios datos). Los datos se almacenan en archivos y los programas utilizan estos archivos para manipular la información. Si la estructura de los archivos cambia, todos los programas que los utilicen se deben modificar.
-- La definición de los datos se encuentra codificada dentro de los programas
-- El control del acceso y la manipulación de los datos vienen impuesto por los programas de aplicación
-Se crean diversas aplicaciones (software) que gestionan diferentes aspectos del sistema: Aplicación realiza operación :point_right: Los datos se almacenan en archivos digitales (binarios, hojas de cálculo, archivos de texto).
+- La definición de los datos se encuentra codificada dentro de los programas.
+- El control del acceso y la manipulación de los datos vienen impuesto por los programas de aplicación.
+Se crean diversas aplicaciones (software) que gestionan diferentes aspectos del sistema: la aplicación realiza operación :point_right: y los datos se almacenan en archivos digitales (binarios, hojas de cálculo, archivos de texto).
 Cada programa almacena sus datos de forma “caótica” y su única ventaja era que los procesos eran independientes (la modificación de uno no afectaba al resto).
 En base a eso, se empezó a estructurar los datos y organizar los datos de forma que se pueda acceder a ellos independientemente del programa que lo gestionara (así no tenían que modificarse los programas con los que trabajaban).
 
@@ -478,24 +478,29 @@ Equipo de mantenimiento: Dan soporte a los usuarios en el trabajo diario.
 
 **Ocasionales:** Utilizan un acceso mínimo a la bdd a través de una aplicación que permite consultar ciertos datos.
 
-### Diseño de base de datos relacionales
+## Diseño de base de datos relacionales
 La metodología de diseño de base de datos relacionales se ha consolidado satisfaciendo las propiedades de generalidad, calidad de producto y facilidad de uso.
-#### Diseño conceptual
+Consta de las siguientes partes:
+**Diseño conceptual**
 Definir las entidades y relaciones entre ellos de forma abstracta, sin centrarse en ningún modelo lógico en concreto como el relacional, orientado a objetos, jerárquico o de red.
 - Herramienta: Modelo conceptual de datos, se usa alguna variante del modelo entidad-relación para las bases de datos relacionales.
 - Resultado: Esquema conceptual de la base de datos.
-#### Diseño lógico
+
+**Diseño lógico**
 Su objetivo es definir el esquema de la base de datos según el modelo que implementa el SGBD objetivo.
 - Herramienta: Modelo lógico de datos. Se usa el modelo lógico que implemente el sistema de gestión de bases de datos objetivo, pero es independiente de los aspectos físicos. Usan técnicas formales para verificar la calidad del esquema lógico; la más usual es la normalización. En el modelo relacional usan las tablas.
 - Resultado: Esquema lógico de la base de datos.
-#### Diseño físico
+
+**Diseño físico**
 Su objetivo es definir el esquema físico de la base de datos de forma que se den todas las instrucciones para que un DBA _(Data Base Administrator)_ pueda implementar la base de datos sin ninguna ambigüedad. En esta etapa se considera el rendimiento.
 - Herramienta: Modelo físico de datos. Se consideran todos los detalles de la implementación física: organización de archivos e índices para el SGBD considerado.
 - Resultado: Esquema físico de la base de datos.
 > Especificaciones(en lenguaje natural) ---Diseño conceptual---> Esquema conceptual(Modelo entidad-relación) ---Diseño lógico---> Esquema lógico(Diseño de tablas relacionales) ---Diseño físico---> Esquema físico(Organización de archivos e indices)
-#### Diseño conceptual
+
+**Diseño conceptual**
 El modelo entidad-relación que permite diseñar el esquema conceptual de una BD, y es muy adecuado para las BDs relaciones. Su resultado es un diagrama entidad-relación.
 **En este apartado se usará de ejemplo de aplicación a las necesidades de una secretaria de un centro docente, en la que hay alumnos matriculados en asignaturas y profesores que las imparten en ciertas aulas. Los alumnos tendrán una nota determinada en cada asignatura en que están matriculados.**
+
 #### Conceptos
 - **Entidad:** Es el menor objeto con significado en una instancia. Por ej. para el diseño de una BD de la secretaría de un centro docente, el alumno con los siguientes datos:
 >  DNI = 01234567Z
@@ -515,6 +520,7 @@ En el enfoque clásico serían los campos de los registros.
 <!-- Por ejemplo, en el caso del domicilio puede que nos interese descomponerlo a su vez en calle, el número y la ciudad por separado. -->
 - **Clave:** Es un atributo o conjunto de atributos cuyos valores identifican unívocamente cada entidad.
 <!-- Por ejemplo, DNI es un atributo clave del tipo de entidad Alumnos. Esto significa que los valores de la clave no se pueden repetir en el conjunto de entidades. En el ejemplo anterior ningún DNI se debería repetir en una instancia del tipo de entidad Alumnos. -->
+
 #### El concepto de clave distingue tres claves diferentes:
 - **Superclave:** Es cualquier conjunto de atributos que pueden identificar unívocamente a una tupla.
 - **Clave candidata:** Es el menor conjunto de atributos que puede formar clave. Puede haber varias en una tabla.
@@ -533,13 +539,13 @@ matriculado en la asignatura Bases de datos. -->
 <!-- Por ejemplo, Matrícula puede tener el atributo Nota que indica la nota que el alumno ha obtenido en una asignatura determinada. -->
 > Es posible que el mismo tipo de entidad aparezca dos o más veces en un tipo de relación. En este caso se asigna un nombre a cada papel que hace el tipo de entidad en el tipo de relación. 
 <!-- Por ejemplo, algunos profesores tienen un supervisor, por lo que se define un tipo de relación Supervisa que relaciona profesores con profesores, el primero tendrá el papel de supervisor y el segundo de supervisado. -->
+
 ### Diagramas entidad-relación (E-R)
 El diseño del modelo E-R a partir del análisis inicial no es directo. A un mismo análisis le corresponden muchos diseños "candidatos". Hay varios criterios, pero ninguno es definitivo. De un buen diseño depende:
 - Eficiencia: Es muy importante en las BD cuando se manejan grandes cantidades de datos.
 
 - Simplicidad del código: Se cometen menos errores.
-- Flexibilidad: Se refiere a que el diagrama sea fácil de modificar.
-Los componentes básicos de los diagramas E-R son los atributos, los tipos de entidades y los tipos de relaciones.
+- Flexibilidad: Se refiere a que el diagrama sea fácil de modificar y los componentes básicos de los diagramas E-R son los atributos, los tipos de entidades y los tipos de relaciones.
 
 ![Tipos de entidades y atributos](https://github.com/sgtbranca/ISPC/blob/main/tipos%20de%20entidades%20y%20atributos.png)
 
@@ -574,6 +580,7 @@ Los atributos de cada tipo de entidad:
 - Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
 - Aulas: Edificio y Número
 Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
+
 ### Elección de los tipos de relación
 El primer tipo de relación es Matrícula que relaciona cada alumno con las asignaturas en las que está matriculado. Además, está relación tiene un atributo, nota, que se asocia cada tupla de la relación. El segundo tipo de relación es Supervisa que va de Profesores a Profesores y que incluye los papeles Supervisor y Supervisado. La última es Imparte, que relaciona cada profesor con la asignatura que imparte y el aula en la que da esa asignatura. Aquí también surgen varias posibilidades:
 1. Hacer dos relaciones binarias. Por ejemplo, profesor con asignatura y asignatura con aula.
@@ -603,21 +610,30 @@ El diagrama entidad-relación del ejemplo quedaría como se ilustra a continuaci
 ### Adelanto de las restricciones de integridad
 
 Con los elementos anteriores tenemos una primera aproximación a los diagramas E-R en la que tenemos definidos los elementos principales de los diagramas. Sin embargo, en el modelo E-R también se pueden definir numerosas restricciones de integridad sobre los tipos de entidades y tipos de relaciones.
+
 Por ejemplo, en la relación Supervisa un profesor puede tener a lo sumo un supervisor, pero el diagrama anterior permite que no debería ser una instancia válida de la relación.
+
 Para evitar estas situaciones se introducen las denominadas restricciones de integridad de la base de datos. Las restricciones de integridad (o simplemente restricciones) son propiedades que se asocian a un tipo de entidad o de relación. Las instancias válidas del tipo de entidad o relación son aquellas en las que se verifique el conjunto de restricciones asociadas. Las restricciones son parte del diseño de la base de datos igual que los tipos de entidades o de relaciones. Los SGBD se encargan de comprobar que la instancia verifica las restricciones más usuales. En el ejemplo anterior, una vez incluida la restricción, el SGBD no nos permitiría insertar la segunda fila.
+
 Un tipo de restricción de integridad que interesa conocer en esta etapa es la restricción de clave. Una restricción de clave consiste en imponer que un conjunto de atributos sea el que defina unívocamente a una fila de un tipo de entidades. Por ejemplo, en el tipo de entidades Alumnos se puede elegir DNI para identificar a un alumno en concreto, pero no sería conveniente usar el atributo Nombre y apellidos porque es muy posible encontrar a dos personas con los mismos nombres y apellidos. Por motivos de eficiencia conviene que el número de atributos elegidos sea el menor posible. A veces, es posible elegir varios conjuntos de atributos que contengan el mismo número de atributos, pero se suele escoger uno de estos conjuntos como el representativo, que se denomina clave primaria.
+
 La idea de este tipo de restricción se puede entender con el siguiente ejemplo: supongamos que deseamos tener información sobre el país de nacimiento de personas. Habría una relación Nacida entre las entidades Personas y Países, como se muestra a continuación:
 ![persona-nacida-pais]()
+
 Si bien muchas personas pueden haber nacido en un país, una persona en concreto sólo puede haber nacido en un país. Esto se expresa en el diagrama E-R con una flecha que indica que una persona ha nacido en un país en concreto. Leyendo la relación en el sentido contrario diríamos que en un país pueden haber nacido muchas personas (el segmento que une Nacida con personas no lleva flecha).
+
 ![persona-nacida-pais2]()
+
 El último tipo de restricción de integridad que interesa introducir ahora es la participación total. Se refiere a que podamos encontrar cada entidad de un tipo de entidad en la relación que lo liga con otro u otros. Es decir, cada alumno definido en el tipo de entidad Alumnos debemos encontrarlo en la relación Matrícula, relacionado con la asignatura en la que esté matriculado. En el diagrama E-R se expresa con una línea doble, como se ve a continuación:
+
 [alumnos-matricula-asignaturas]()
- 3.3. Diseño lógico
+
+### Diseño lógico
 
    El diseño lógico es la segunda etapa del diseño de bases de datos en general y de las bases de datos relacionales en particular. En nuestro caso, las BD relacionales, el resultado de esta etapa es un esquema relacional basado en un modelo relacional. En este apartado se describirá en primer lugar el modelo relacional y en segundo lugar cómo pasar de un esquema entidad-relación a un esquema relacional.
 
 ### El modelo relacional
-   Este modelo fue creado por Codd a principios de los 70 al que dotó de una sólida base teórica. Actualmente está implementado en la mayoría de los SGBD usados en la empresa. El concepto principal de este modelo es la relación o tabla. Es importante no confundir la tabla con las relaciones del modelo E-R. Aquí las relaciones se aplican tanto a tipos de relaciones como a tipos de entidades. En este modelo no se distingue entre tipos de entidades y tipos de relaciones porque la idea es que una relación o tabla expresa la
+Este modelo fue creado por Codd a principios de los 70 al que dotó de una sólida base teórica. Actualmente está implementado en la mayoría de los SGBD usados en la empresa. El concepto principal de este modelo es la relación o tabla. Es importante no confundir la tabla con las relaciones del modelo E-R. Aquí las relaciones se aplican tanto a tipos de relaciones como a tipos de entidades. En este modelo no se distingue entre tipos de entidades y tipos de relaciones porque la idea es que una relación o tabla expresa la
 relación entre los tipos de valores que contiene.
 
 A continuación se introducen los conceptos de este modelo:
