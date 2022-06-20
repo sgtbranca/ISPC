@@ -155,9 +155,7 @@ El diseño del modelo E-R a partir del análisis inicial no es directo. A un mis
 - Flexibilidad: Se refiere a que el diagrama sea fácil de modificar.
 Los componentes básicos de los diagramas E-R son los atributos, los tipos de entidades y los tipos de relaciones.
 
-![Tipos de entidades y atributos](https://acceso.ispc.edu.ar/pluginfile.php/51710/mod_book/chapter/1728/image%20%281%29.png)
-
-
+![Tipos de entidades y atributos](https://github.com/sgtbranca/ISPC/blob/main/tipos%20de%20entidades%20y%20atributos.png)
 
 ### Elección de los tipos de entidad y sus atributos
 De la especificación del problema de la secretaría se deduce que va ha haber un tipo de entidad alumnos, pero no cuáles son sus atributos. ¿Debe incluir las asignaturas en las que está matriculado? La respuesta es no y hacerlo así sería un error grave. Aparte de la idea 'filosófica’ (cada asignatura es un objeto con significado propio, es decir, una entidad), al mezclar en una sola entidad alumnos y asignaturas cometemos cuatro errores:
@@ -190,6 +188,9 @@ Los atributos de cada tipo de entidad:
 - Profesores: DNI, Apellidos y nombre, Domicilio y Teléfono
 - Aulas: Edificio y Número
 Aún nos falta un atributo, que es la nota:<!-- ¿Dónde se coloca? En Alumnos no porque un alumno tiene muchas notas, tantas como asignaturas en las que esté matriculado. En Asignaturas no porque en la misma asignatura están matriculados muchos alumnos. Va a ser --> un atributo del tipo de relación matrícula.
+
+
+
 
 # Introducción a las Bases de Datos
 ## La necesidad de gestionar datos 
