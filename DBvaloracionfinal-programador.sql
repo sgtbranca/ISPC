@@ -31,6 +31,10 @@ constraint pkHistorial primary key (ID_Historial),
 constraint fkPerroID_Perro foreign key (Perro) REFERENCES Perro(ID_Perro) ON DELETE CASCADE
 );
 
+#ACTIVIDADES
+
+
+
 INSERT INTO Dueno
 VALUES (27445286, "Tomás","Coronel",17583427,"Baracaldo 304");
 
