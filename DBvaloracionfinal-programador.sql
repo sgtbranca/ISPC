@@ -31,7 +31,7 @@ constraint pkHistorial primary key (ID_Historial),
 constraint fkPerroID_Perro foreign key (Perro) REFERENCES Perro(ID_Perro) ON DELETE CASCADE
 );
 
-#ACTIVIDADES
+#ACTIVIDADES INTERACTUANDO CON LA BASE DE DATOS
 
 
 
